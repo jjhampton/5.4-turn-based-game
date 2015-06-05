@@ -30,3 +30,6 @@ this["JST"]["player"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"m
     + alias1(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
     + "</span>\n  <div class=\"playerhp\">HP<div class=\"playerhealthbar\"></div></div>\n</div>\n";
 },"useData":true});
+this["JST"]["renderarena"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "";
+},"useData":true});

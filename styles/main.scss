@@ -15,7 +15,150 @@ $base-font-color: $dark-gray;
 $base-background-color: $very-light-gray;
 
 body {
-  font-family: $base-font-family;
+  @include outer-container($max-width);
+  font-family: 'VT323', ;
   background-color: $base-background-color;
   color: $base-font-color;
+}
+
+li {
+  list-style: none;
+}
+
+.arenacontent {
+  @include span-columns(12);
+  height: auto;
+}
+
+.pokemondisplay {
+  @include span-columns(8);
+  @include shift(2);
+  height: 400px;
+  margin-top: 100px;
+  background-image: url('../../battlebackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.playerbox {
+  width: auto;
+  position: absolute;
+  margin-top: 250px;
+  margin-left: 50px;
+  height: auto;
+}
+
+.playerpokemoninfo {
+  @include span-columns(4);
+  height: 60px;
+  margin-top: 250px;
+  margin-left: 400px;
+  background-color: rgba(248, 243, 217, 1);
+  border-radius: 30px;
+  border: 2px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+.enemyinfo {
+  @include span-columns(4);
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 30px;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: rgba(248, 243, 217, 1);
+  text-align: center;
+}
+
+.playerhealthbar {
+  @include span-columns(10);
+  float: right;
+  margin-top: 5px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: red;
+  border: 1px solid white;
+}
+
+.enemyhealthbar {
+  @include span-columns(10);
+  float: right;
+  margin-top: 5px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: red;
+  border: 1px solid white;
+}
+
+.playerhp {
+  @include span-columns(11);
+  @include shift(.5);
+  margin-top: 5px;
+  padding: 2px;
+  color: rgba(255, 213, 73, 1);
+  border-radius: 10px;
+  background-color: rgba(101, 98, 82, 1);
+}
+
+.enemyhp {
+  @include span-columns(11);
+  @include shift(.5);
+  margin-top: 5px;
+  padding: 2px;
+  color: rgba(255, 213, 73, 1);
+  border-radius: 10px;
+  background-color: rgba(101, 98, 82, 1);
+}
+
+.playerpokemonname {
+  font-size: 20px;
+}
+
+.enemyname {
+  font-size: 20px;
+}
+
+.enemybox {
+  width: auto;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 530px;
+}
+
+.battlebar {
+  @include span-columns(8);
+  @include shift(2);
+  height: 120px;
+  background-color: rgba(74, 67, 81, 1);
+}
+
+.actiontext {
+  @include span-columns(7);
+  height: 100px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.actionoptions {
+  @include span-columns(4.7 of 12);
+  @include omega();
+  float: right;
+}
+
+.actionmoves {
+  @include span-columns(5.8);
+  @include omega();
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: white;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 3px;
+  color: black;
 }

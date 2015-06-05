@@ -14,6 +14,14 @@ window.GameApp = window.GameApp || {};
   $(document).ready(function(){
     GameApp.router = new GameApp.GameRouter();
     Backbone.history.start();
+    $.ajax({
+      url: '../pokemon.json'
+    }).then(function(pokemonlist) {
+      pokemonlist.forEach(function(pokemon) {
+        displayPlayerPokemon(pokemon);
+        displayEnemyPokemon(pokemon);
+      });
+    });
   });
 
   // Set Event listener on character-selected-event: for whatever event is fired after both characters are selected on the 'CHARACTER SELECT GRID', a "BEGIN GAME BUTTON" or similar is pressed,  and we want to route to the game screen
@@ -31,4 +39,23 @@ window.GameApp = window.GameApp || {};
   //     ChatApp.vent.trigger('data:messages:sync', messages);
   //   });
   // }
+
+
+  function displayBattleMenu(pokemon) {
+    var moveSet = pokemon.moves;
+    $('.battlemenu').html(JST['battlemenu'](moveSet));
+  }
+
+  function displayPlayerPokemon(pokemon) {
+    if(pokemon.name === "Dragonite") {
+      $('.pokemondisplay').append(JST['player'](pokemon));
+      displayBattleMenu(pokemon);
+    }
+  }
+
+  function displayEnemyPokemon(pokemon) {
+    if(pokemon.name === "Zapdos") {
+      $('.pokemondisplay').append(JST['enemy'](pokemon));
+    }
+}
 })();

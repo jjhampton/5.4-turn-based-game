@@ -23,6 +23,14 @@ window.GameApp = window.GameApp || {};
   $(document).on('click', '.start-button', function(event){
     event.preventDefault();
     GameApp.vent.trigger('list:display');
+    $.ajax({
+      url: '../pokemon.json'
+    }).then(function(pokemonlist) {
+      pokemonlist.forEach(function(pokemon) {
+      $('.character-grid-container').append(JST['rendercharacter'](pokemon));
+      }); // routes user to game screen
+    });
+
   });
 
   $(document).on('click', '.start-game-button', function(event){
@@ -65,7 +73,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function displayEnemyPokemon(pokemon) {
-    if(pokemon.name === "Moltres") {
+    if(pokemon.name === "Gengar") {
       $('.pokemondisplay').append(JST['enemy'](pokemon));
     }
 }

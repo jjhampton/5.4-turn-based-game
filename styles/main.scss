@@ -19,6 +19,42 @@ body {
   font-family: 'VT323', ;
   background-color: $base-background-color;
   color: $base-font-color;
+  width: 1000px;
+}
+
+.application {
+  width: 800px;
+  height: auto;
+  margin: 0 auto;
+}
+
+// Title Screen Styles
+
+
+.start-button {
+  width: 200px;
+  height: 100px;
+  margin-left: 400px;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+
+
+// Character Selection Grid Styles
+
+.character-grid-container {
+  width: 800px;
+  height: auto;
+  margin-left: 100px;
+}
+
+.character-portrait {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 4px solid $blue;
 }
 
 li {

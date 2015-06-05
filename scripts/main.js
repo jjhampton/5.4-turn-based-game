@@ -4,6 +4,7 @@ window.GameApp = window.GameApp || {};
 (function(){
   'use strict';
 
+
   // Create an event hub
   GameApp.vent = _.extend({}, Backbone.Events);
 
@@ -41,10 +42,10 @@ window.GameApp = window.GameApp || {};
   // }
 
 
-=======
+
   });
 
->>>>>>> 752397340df4d023745283ba03e9ba1c051e2bb6
+
   function displayBattleMenu(pokemon) {
     var moveSet = pokemon.moves;
     $('.battlemenu').html(JST['battlemenu'](moveSet));
@@ -62,13 +63,43 @@ window.GameApp = window.GameApp || {};
       $('.pokemondisplay').append(JST['enemy'](pokemon));
     }
 }
-<<<<<<< HEAD
-=======
 
 
 
 
 
 
->>>>>>> 752397340df4d023745283ba03e9ba1c051e2bb6
+
+  $(document).ready(function(){
+
+      route();
+
+      $(document).on('click', '.start-button', function(event){
+        event.preventDefault();
+        window.location.hash = '/charselect';
+      });
+
+      $(window).on('hashchange', function(event){
+        event.preventDefault();
+        route();
+      });
+    });
+
+
+    function route(){
+      switch(window.location.hash){
+        case '':
+        $('.application').html(JST['title-screen']());
+        break;
+      case '#/charselect':
+        charSelect()
+        break;
+      }
+    }
+
+    function charSelect(){
+      $('.application').append(JST['character-select']());
+    }
+
+
 })();

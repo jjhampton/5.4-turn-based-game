@@ -41,6 +41,10 @@ window.GameApp = window.GameApp || {};
   // }
 
 
+=======
+  });
+
+>>>>>>> 752397340df4d023745283ba03e9ba1c051e2bb6
   function displayBattleMenu(pokemon) {
     var moveSet = pokemon.moves;
     $('.battlemenu').html(JST['battlemenu'](moveSet));
@@ -58,4 +62,13 @@ window.GameApp = window.GameApp || {};
       $('.pokemondisplay').append(JST['enemy'](pokemon));
     }
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> 752397340df4d023745283ba03e9ba1c051e2bb6
 })();

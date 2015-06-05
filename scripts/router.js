@@ -12,19 +12,20 @@ window.GameApp = window.GameApp || {};
     },
 
     index: function(){
-      $('.application').html(JST['title']());
+      $('.application').html(JST['title-screen']());
       // will use $('.application').append(JST['character-select']()) to append character-select-grid with scroll-down effect
     },
 
     game: function() {
-      $('.application').html(JST['game']()); // routes user to game screen
-    },
-
-    end: function() {
-      $('.application').html(JST['game']()); // routes user to game-over screen
+      $('.application').html(JST['renderarena']());
+      
     }
+
+    // end: function() {
+    //   $('.application').html(JST['game']()); // routes user to game-over screen
+    // }
   });
 
-  GameApp.router = new GameApp.GameRouter;();
+  GameApp.router = new GameApp.GameRouter();
 
 })()

@@ -18,14 +18,14 @@
   }
 
   function displayPlayerPokemon(pokemon) {
-    if(pokemon.name === "Dragonite") {
+    if(pokemon.name === "Charizard") {
       $('.pokemondisplay').append(JST['player'](pokemon));
       displayBattleMenu(pokemon);
     }
   }
 
   function displayEnemyPokemon(pokemon) {
-    if(pokemon.name === "Zapdos") {
+    if(pokemon.name === "Moltres") {
       $('.pokemondisplay').append(JST['enemy'](pokemon));
     }
 }

@@ -15,18 +15,15 @@ $base-font-color: $dark-gray;
 $base-background-color: $very-light-gray;
 
 body {
-  @include outer-container($max-width);
-  font-family: 'VT323', ;
   background-color: $base-background-color;
   color: $base-font-color;
-  width: 1000px;
 }
 
-.application {
+/* .application {
   width: 800px;
   height: auto;
   margin: 0 auto;
-}
+} */
 
 // Title Screen Styles
 
@@ -62,8 +59,10 @@ li {
 }
 
 .arenacontent {
-  @include span-columns(12);
+  @include outer-container($max-width);
   height: auto;
+  font-family: 'VT323', ;
+  overflow: hidden;
 }
 
 .pokemondisplay {

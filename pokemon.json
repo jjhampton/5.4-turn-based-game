@@ -163,8 +163,8 @@
   {
     "name": "Gengar",
     "image": {
-      "front": "pokemon-gifs/articuno-front.gif",
-      "back": "pokemon-gifs/articuno-back.gif"
+      "front": "pokemon-gifs/gengar-front.gif",
+      "back": "pokemon-gifs/gengar-back.gif"
     },
     "moves": [{
       "name": "Hypnosis",

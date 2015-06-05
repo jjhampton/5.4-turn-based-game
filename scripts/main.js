@@ -73,7 +73,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function displayEnemyPokemon(pokemon) {
-    if(pokemon.name === "Gengar") {
+    if(pokemon.name === "Yveltal") {
       $('.pokemondisplay').append(JST['enemy'](pokemon));
     }
 }

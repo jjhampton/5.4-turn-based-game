@@ -3,7 +3,8 @@
     "name": "Articuno",
     "image": {
       "front": "pokemon-gifs/articuno-front.gif",
-      "back": "pokemon-gifs/articuno-back.gif"
+      "back": "pokemon-gifs/articuno-back.gif",
+      "profile": "pokemon-gifs/articuno-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -26,7 +27,8 @@
     "name": "Moltres",
     "image": {
       "front": "pokemon-gifs/moltres-front.gif",
-      "back": "pokemon-gifs/moltres-back.gif"
+      "back": "pokemon-gifs/moltres-back.gif",
+      "profile": "pokemon-gifs/moltres-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -49,7 +51,8 @@
     "name": "Zapdos",
     "image": {
       "front": "pokemon-gifs/zapdos-front.gif",
-      "back": "pokemon-gifs/zapdos-back.gif"
+      "back": "pokemon-gifs/zapdos-back.gif",
+      "profile": "pokemon-gifs/zapdos-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -72,7 +75,8 @@
     "name": "Blastoise",
     "image": {
       "front": "pokemon-gifs/blastoise-front.gif",
-      "back": "pokemon-gifs/blastoise-back.gif"
+      "back": "pokemon-gifs/blastoise-back.gif",
+      "profile": "pokemon-gifs/blastoise-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -95,7 +99,8 @@
     "name": "Charizard",
     "image": {
       "front": "pokemon-gifs/charizard-front.gif",
-      "back": "pokemon-gifs/charizard-back.gif"
+      "back": "pokemon-gifs/charizard-back.gif",
+      "profile": "pokemon-gifs/charizard-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -118,7 +123,8 @@
     "name": "Venasaur",
     "image": {
       "front": "pokemon-gifs/venasaur-front.gif",
-      "back": "pokemon-gifs/venasaur-back.gif"
+      "back": "pokemon-gifs/venasaur-back.gif",
+      "profile": "pokemon-gifs/venasaur-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -141,7 +147,8 @@
     "name": "Dragonite",
     "image": {
       "front": "pokemon-gifs/dragonite-front.gif",
-      "back": "pokemon-gifs/dragonite-back.gif"
+      "back": "pokemon-gifs/dragonite-back.gif",
+      "profile": "pokemon-gifs/dragonite-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -164,7 +171,8 @@
     "name": "Gengar",
     "image": {
       "front": "pokemon-gifs/gengar-front.gif",
-      "back": "pokemon-gifs/gengar-back.gif"
+      "back": "pokemon-gifs/gengar-back.gif",
+      "profile": "pokemon-gifs/gengar-prof.gif"
     },
     "moves": [{
       "name": "Hypnosis",
@@ -187,7 +195,8 @@
     "name": "Gyarados",
     "image": {
       "front": "pokemon-gifs/gyarados-front.gif",
-      "back": "pokemon-gifs/gyarados-back.gif"
+      "back": "pokemon-gifs/gyarados-back.gif",
+      "profile": "pokemon-gifs/gyarados-prof.gif"
     },
     "moves": [{
       "name": "Tackle",
@@ -210,7 +219,8 @@
     "name": "Lugia",
     "image": {
       "front": "pokemon-gifs/lugia-front.gif",
-      "back": "pokemon-gifs/lugia-back.gif"
+      "back": "pokemon-gifs/lugia-back.gif",
+      "profile": "pokemon-gifs/lugia-prof.gif"
     },
     "moves": [{
       "name": "Spirit Bomb",
@@ -233,7 +243,8 @@
     "name": "Mewtwo",
     "image": {
       "front": "pokemon-gifs/mewtwo-front.gif",
-      "back": "pokemon-gifs/mewtwo-back.gif"
+      "back": "pokemon-gifs/mewtwo-back.gif",
+      "profile": "pokemon-gifs/mewtwo-prof.gif"
     },
     "moves": [{
       "name": "Psychic",
@@ -256,7 +267,8 @@
     "name": "Snorlax",
     "image": {
       "front": "pokemon-gifs/snorlax-front.gif",
-      "back": "pokemon-gifs/snorlax-back.gif"
+      "back": "pokemon-gifs/snorlax-back.gif",
+      "profile": "pokemon-gifs/snorlax-prof.gif"
     },
     "moves": [{
       "name": "Slam",
@@ -273,6 +285,438 @@
     {
       "name": "Hypnotize",
       "damage": 0
+    }]
+  },
+  {
+    "name": "Aerodactyl",
+    "image": {
+      "front": "pokemon-gifs/aerodactyl-front.gif",
+      "back": "pokemon-gifs/aerodactyl-back.gif",
+      "profile": "pokemon-gifs/aerodactyl-prof.gif"
+    },
+    "moves": [{
+      "name": "Bite",
+      "damage": 25
+    },
+    {
+      "name": "Rock Smash",
+      "damage": 35
+    },
+    {
+      "name": "Galeforce",
+      "damage": 20
+    },
+    {
+      "name": "Tail Whip",
+      "damage": 10
+    }]
+  },
+  {
+    "name": "Arcanine",
+    "image": {
+      "front": "pokemon-gifs/arcanine-front.gif",
+      "back": "pokemon-gifs/arcanine-back.gif",
+      "profile": "pokemon-gifs/arcanine-prof.gif"
+    },
+    "moves": [{
+      "name": "Lick",
+      "damage": 15
+    },
+    {
+      "name": "Fire Spin",
+      "damage": 40
+    },
+    {
+      "name": "Scare",
+      "damage": 0
+    },
+    {
+      "name": "Body Smash",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Chandelure",
+    "image": {
+      "front": "pokemon-gifs/chandelure-front.gif",
+      "back": "pokemon-gifs/chandelure-back.gif",
+      "profile": "pokemon-gifs/chandelure-prof.gif"
+    },
+    "moves": [{
+      "name": "Gost Bomb",
+      "damage": 35
+    },
+    {
+      "name": "Fade",
+      "damage": 0
+    },
+    {
+      "name": "Psychic",
+      "damage": 40
+    },
+    {
+      "name": "Bite",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Druddigon",
+    "image": {
+      "front": "pokemon-gifs/druddigon-front.gif",
+      "back": "pokemon-gifs/druddigon-back.gif",
+      "profile": "pokemon-gifs/druddigon-prof.gif"
+    },
+    "moves": [{
+      "name": "Body Slam",
+      "damage": 25
+    },
+    {
+      "name": "Rock Smash",
+      "damage": 35
+    },
+    {
+      "name": "Dig",
+      "damage": 20
+    },
+    {
+      "name": "Dragon Ball",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Entei",
+    "image": {
+      "front": "pokemon-gifs/entei-front.gif",
+      "back": "pokemon-gifs/entei-back.gif",
+      "profile": "pokemon-gifs/entei-prof.gif"
+    },
+    "moves": [{
+      "name": "Bite",
+      "damage": 25
+    },
+    {
+      "name": "Flamethrower",
+      "damage": 40
+    },
+    {
+      "name": "Magma Cannon",
+      "damage": 50
+    },
+    {
+      "name": "Howl",
+      "damage": 0
+    }]
+  },
+  {
+    "name": "Giratina",
+    "image": {
+      "front": "pokemon-gifs/giratina-front.gif",
+      "back": "pokemon-gifs/giratina-back.gif",
+      "profile": "pokemon-gifs/giratina-prof.gif"
+    },
+    "moves": [{
+      "name": "Razor Leaf",
+      "damage": 25
+    },
+    {
+      "name": "Sleep Powder",
+      "damage": 0
+    },
+    {
+      "name": "Solar Beam",
+      "damage": 30
+    },
+    {
+      "name": "Photosynthesis",
+      "damage": 0
+    }]
+  },
+  {
+    "name": "Groudon",
+    "image": {
+      "front": "pokemon-gifs/groudon-front.gif",
+      "back": "pokemon-gifs/groudon-back.gif",
+      "profile": "pokemon-gifs/groudon-prof.gif"
+    },
+    "moves": [{
+      "name": "Earthquake",
+      "damage": 35
+    },
+    {
+      "name": "Magma Cannon",
+      "damage": 40
+    },
+    {
+      "name": "Stomp",
+      "damage": 20
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    }]
+  },
+  {
+    "name": "Ho-Oh",
+    "image": {
+      "front": "pokemon-gifs/ho-oh-front.gif",
+      "back": "pokemon-gifs/ho-oh-back.gif",
+      "profile": "pokemon-gifs/ho-oh-prof.gif"
+    },
+    "moves": [{
+      "name": "Fire Ball",
+      "damage": 35
+    },
+    {
+      "name": "Peck",
+      "damage": 20
+    },
+    {
+      "name": "Flamethrower",
+      "damage": 30
+    },
+    {
+      "name": "Aerial Ace",
+      "damage": 25
+    }]
+  },
+  {
+    "name": "Kyogre",
+    "image": {
+      "front": "pokemon-gifs/kyogre-front.gif",
+      "back": "pokemon-gifs/kyogre-back.gif",
+      "profile": "pokemon-gifs/kyogre-prof.gif"
+    },
+    "moves": [{
+      "name": "Surf",
+      "damage": 35
+    },
+    {
+      "name": "Hurricane",
+      "damage": 40
+    },
+    {
+      "name": "Body Slam",
+      "damage": 30
+    },
+    {
+      "name": "Water Beam",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Kyurem",
+    "image": {
+      "front": "pokemon-gifs/kyurem-front.gif",
+      "back": "pokemon-gifs/kyurem-back.gif",
+      "profile": "pokemon-gifs/kyurem-prof.gif"
+    },
+    "moves": [{
+      "name": "Spirit Bomb",
+      "damage": 45
+    },
+    {
+      "name": "Thunder",
+      "damage": 30
+    },
+    {
+      "name": "Thunder Wave",
+      "damage": 0
+    },
+    {
+      "name": "Dragon Ball",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Landorus",
+    "image": {
+      "front": "pokemon-gifs/landorus-front.gif",
+      "back": "pokemon-gifs/landorus-back.gif",
+      "profile": "pokemon-gifs/landorus-prof.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Earthquake",
+      "damage": 40
+    },
+    {
+      "name": "Razor Leaf",
+      "damage": 20
+    },
+    {
+      "name": "Photosythesis",
+      "damage": 0
+    }]
+  },
+  {
+    "name": "Machamp",
+    "image": {
+      "front": "pokemon-gifs/machamp-front.gif",
+      "back": "pokemon-gifs/machamp-back.gif",
+      "profile": "pokemon-gifs/machamp-prof.gif"
+    },
+    "moves": [{
+      "name": "Uppercut",
+      "damage": 25
+    },
+    {
+      "name": "Roundhouse",
+      "damage": 30
+    },
+    {
+      "name": "Body Slam",
+      "damage": 30
+    },
+    {
+      "name": "Rock Smash",
+      "damage": 25
+    }]
+  },
+  {
+    "name": "Nidoking",
+    "image": {
+      "front": "pokemon-gifs/nidoking-front.gif",
+      "back": "pokemon-gifs/nidoking-back.gif",
+      "profile": "pokemon-gifs/nidoking-prof.gif"
+    },
+    "moves": [{
+      "name": "Horn Drill",
+      "damage": 35
+    },
+    {
+      "name": "Earthquake",
+      "damage": 40
+    },
+    {
+      "name": "Rock Smash",
+      "damage": 30
+    },
+    {
+      "name": "Bite",
+      "damage": 25
+    }]
+  },
+  {
+    "name": "Raikou",
+    "image": {
+      "front": "pokemon-gifs/raikou-front.gif",
+      "back": "pokemon-gifs/raikou-back.gif",
+      "profile": "pokemon-gifs/raikou-prof.gif"
+    },
+    "moves": [{
+      "name": "Bite",
+      "damage": 25
+    },
+    {
+      "name": "Thunder",
+      "damage": 40
+    },
+    {
+      "name": "Thunder Wave",
+      "damage": 0
+    },
+    {
+      "name": "Thunder Ball",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Rayquaza",
+    "image": {
+      "front": "pokemon-gifs/rayquaza-front.gif",
+      "back": "pokemon-gifs/rayquaza-back.gif",
+      "profile": "pokemon-gifs/rayquaza-prof.gif"
+    },
+    "moves": [{
+      "name": "Tail Smash",
+      "damage": 35
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Thunder",
+      "damage": 40
+    },
+    {
+      "name": "Dragon Bomb",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Suicune",
+    "image": {
+      "front": "pokemon-gifs/suicune-front.gif",
+      "back": "pokemon-gifs/suicune-back.gif",
+      "profile": "pokemon-gifs/suicune-prof.gif"
+    },
+    "moves": [{
+      "name": "Surf",
+      "damage": 35
+    },
+    {
+      "name": "Hydro Pump",
+      "damage": 40
+    },
+    {
+      "name": "Bite",
+      "damage": 30
+    },
+    {
+      "name": "Whip Lash",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Tyranitar",
+    "image": {
+      "front": "pokemon-gifs/tyranitar-front.gif",
+      "back": "pokemon-gifs/tyranitar-back.gif",
+      "profile": "pokemon-gifs/tyranitar-prof.gif"
+    },
+    "moves": [{
+      "name": "Slam",
+      "damage": 35
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Photosynthesis",
+      "damage": 0
+    },
+    {
+      "name": "Earthquake",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Yveltal",
+    "image": {
+      "front": "pokemon-gifs/yveltal-front.gif",
+      "back": "pokemon-gifs/yveltal-back.gif",
+      "profile": "pokemon-gifs/yveltal-prof.png"
+    },
+    "moves": [{
+      "name": "Psychic",
+      "damage": 35
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Thunder",
+      "damage": 30
+    },
+    {
+      "name": "Dragon Beam",
+      "damage": 30
     }]
   }
 ]

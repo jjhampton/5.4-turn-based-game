@@ -1,7 +1,34 @@
+window.GameApp = window.GameApp || {};
+
+
 (function(){
   'use strict';
 
-  $(document).ready(function(){
-    $('body').prepend(JST['application']());
+  // Create an event hub
+  GameApp.vent = _.extend({}, Backbone.Events);
+
+  GameApp.vent.on('data:messages:sync', function(messages) { //this will need changing
+    $('.messages-list').html(JST['messages'](messages)); // this will need changing
   });
+
+  $(document).ready(function(){
+    GameApp.router = new GameApp.GameRouter();
+    Backbone.history.start();
+  });
+
+  // Set Event listener on character-selected-event: for whatever event is fired after both characters are selected on the 'CHARACTER SELECT GRID', a "BEGIN GAME BUTTON" or similar is pressed,  and we want to route to the game screen
+  $(document).on('click', '.button-game-start', function(event){
+    event.preventDefault();
+    GameApp.router.navigate('game', {trigger: true});
+  });
+
+  // EXAMPLE FROM JAKE FROM CHAT-APP
+  // function fetchMessages(){
+  //   return $.ajax({
+  //     url: "http://tiny-lasagna-server.herokuapp.com/collections/messages"
+  //   }).then(function(messages){
+  //     ** TRIGGER THE data:messages:sync event **
+  //     ChatApp.vent.trigger('data:messages:sync', messages);
+  //   });
+  // }
 })();

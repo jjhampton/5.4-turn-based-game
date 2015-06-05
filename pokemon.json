@@ -1,0 +1,278 @@
+[
+  {
+    "name": "Articuno",
+    "image": {
+      "front": "pokemon-gifs/articuno-front.gif",
+      "back": "pokemon-gifs/articuno-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Blizzard",
+      "damage": 30
+    },
+    {
+      "name": "Sing",
+      "damage": 0
+    },
+    {
+      "name": "Peck",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Moltres",
+    "image": {
+      "front": "pokemon-gifs/moltres-front.gif",
+      "back": "pokemon-gifs/moltres-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Fire Spin",
+      "damage": 25
+    },
+    {
+      "name": "Sing",
+      "damage": 0
+    },
+    {
+      "name": "Gust",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Zapdos",
+    "image": {
+      "front": "pokemon-gifs/zapdos-front.gif",
+      "back": "pokemon-gifs/zapdos-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Thunder",
+      "damage": 35
+    },
+    {
+      "name": "Thundershock",
+      "damage": 0
+    },
+    {
+      "name": "Zap",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Blastoise",
+    "image": {
+      "front": "pokemon-gifs/blastoise-front.gif",
+      "back": "pokemon-gifs/blastoise-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Hydro Pump",
+      "damage": 40
+    },
+    {
+      "name": "Bite",
+      "damage": 20
+    },
+    {
+      "name": "Surf",
+      "damage": 35
+    }]
+  },
+  {
+    "name": "Charizard",
+    "image": {
+      "front": "pokemon-gifs/charizard-front.gif",
+      "back": "pokemon-gifs/charizard-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Flamethrower",
+      "damage": 30
+    },
+    {
+      "name": "Gust",
+      "damage": 20
+    },
+    {
+      "name": "Fire Spin",
+      "damage": 30
+    }]
+  },
+  {
+    "name": "Venasaur",
+    "image": {
+      "front": "pokemon-gifs/venasaur-front.gif",
+      "back": "pokemon-gifs/venasaur-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Solar Beam",
+      "damage": 40
+    },
+    {
+      "name": "Sleep Powder",
+      "damage": 0
+    },
+    {
+      "name": "Photosythesis",
+      "damage": 0
+    }]
+  },
+  {
+    "name": "Dragonite",
+    "image": {
+      "front": "pokemon-gifs/dragonite-front.gif",
+      "back": "pokemon-gifs/dragonite-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Thunder Wave",
+      "damage": 0
+    },
+    {
+      "name": "Dragon Ball",
+      "damage": 20
+    }]
+  },
+  {
+    "name": "Gengar",
+    "image": {
+      "front": "pokemon-gifs/articuno-front.gif",
+      "back": "pokemon-gifs/articuno-back.gif"
+    },
+    "moves": [{
+      "name": "Hypnosis",
+      "damage": 0
+    },
+    {
+      "name": "Psychic",
+      "damage": 40
+    },
+    {
+      "name": "Ghost Bite",
+      "damage": 30
+    },
+    {
+      "name": "Fade",
+      "damage": 0
+    }]
+  },
+  {
+    "name": "Gyarados",
+    "image": {
+      "front": "pokemon-gifs/gyarados-front.gif",
+      "back": "pokemon-gifs/gyarados-back.gif"
+    },
+    "moves": [{
+      "name": "Tackle",
+      "damage": 15
+    },
+    {
+      "name": "Surf",
+      "damage": 35
+    },
+    {
+      "name": "Water Bolt",
+      "damage": 20
+    },
+    {
+      "name": "Bite",
+      "damage": 25
+    }]
+  },
+  {
+    "name": "Lugia",
+    "image": {
+      "front": "pokemon-gifs/lugia-front.gif",
+      "back": "pokemon-gifs/lugia-back.gif"
+    },
+    "moves": [{
+      "name": "Spirit Bomb",
+      "damage": 35
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Hypnotize",
+      "damage": 0
+    },
+    {
+      "name": "Fly",
+      "damage": 25
+    }]
+  },
+  {
+    "name": "Mewtwo",
+    "image": {
+      "front": "pokemon-gifs/mewtwo-front.gif",
+      "back": "pokemon-gifs/mewtwo-back.gif"
+    },
+    "moves": [{
+      "name": "Psychic",
+      "damage": 35
+    },
+    {
+      "name": "Rest",
+      "damage": 0
+    },
+    {
+      "name": "Hyper Beam",
+      "damage": 40
+    },
+    {
+      "name": "Thundershock",
+      "damage": 15
+    }]
+  },
+  {
+    "name": "Snorlax",
+    "image": {
+      "front": "pokemon-gifs/snorlax-front.gif",
+      "back": "pokemon-gifs/snorlax-back.gif"
+    },
+    "moves": [{
+      "name": "Slam",
+      "damage": 25
+    },
+    {
+      "name": "Rest",
+      "damage": 0
+    },
+    {
+      "name": "Body Slam",
+      "damage": 40
+    },
+    {
+      "name": "Hypnotize",
+      "damage": 0
+    }]
+  }
+]

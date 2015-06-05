@@ -3,6 +3,8 @@ window.GameApp = window.GameApp || {};
 
 (function(){
   'use strict';
+  var playerOneCharacter;
+  var playerTwoCharacter;
 
 
   // Create an event hub
@@ -27,10 +29,25 @@ window.GameApp = window.GameApp || {};
       url: '../pokemon.json'
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
-      $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-      }); // routes user to game screen
-    });
+        $('.character-grid-container').append(JST['rendercharacter'](pokemon));
 
+      }); // routes user to game screen
+      $('.character-portrait').on('click', function(){
+        playerOneCharacter=($(this).text());
+        console.log(playerOneCharacter);
+        $('.character-portrait').off('click');
+
+        $('.character-portrait').on('click', function(){
+          if (playerOneCharacter !== undefined){
+
+
+          playerTwoCharacter=($(this).text());
+          console.log(playerTwoCharacter);
+        }
+      });
+
+      });
+    });
   });
 
   $(document).on('click', '.start-game-button', function(event){
@@ -39,11 +56,21 @@ window.GameApp = window.GameApp || {};
     $.ajax({
       url: '../pokemon.json'
     }).then(function(pokemonlist) {
-      pokemonlist.forEach(function(pokemon) {
-        displayPlayerPokemon(pokemon);
-        displayEnemyPokemon(pokemon);
-      }); // routes user to game screen
-    });
+      var selectedPokemonOne = _.filter(pokemonlist, function(pokemon){
+        return pokemon.name === playerOneCharacter;
+      });
+
+      var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){
+        return pokemon.name === playerTwoCharacter;
+      });
+
+      displayPlayerPokemon(selectedPokemonOne[0]);
+      displayEnemyPokemon(selectedPokemonTwo[0]);
+
+
+
+
+
   });
 
   // EXAMPLE FROM JAKE FROM CHAT-APP
@@ -66,16 +93,15 @@ window.GameApp = window.GameApp || {};
   }
 
   function displayPlayerPokemon(pokemon) {
-    if(pokemon.name === "Charizard") {
       $('.pokemondisplay').append(JST['player'](pokemon));
       displayBattleMenu(pokemon);
-    }
+
   }
 
   function displayEnemyPokemon(pokemon) {
-    if(pokemon.name === "Yveltal") {
+
       $('.pokemondisplay').append(JST['enemy'](pokemon));
-    }
+
 }
 
 
@@ -115,5 +141,5 @@ window.GameApp = window.GameApp || {};
   //     $('.application').append(JST['character-select']());
   //   }
   //
-  //
+});
 })();

@@ -21,25 +21,32 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('playerMoveSelect', function(move) {
     if (playerOneTurn) {
-    changeEnemyHealth(move.damage);
-    logGameText(playerOneCharacter, enemyCharacter, move);
-    playerOneTurn = false;
-    if(enemyHealth > 0) {
-      enemyTurn();
-    } else {
-      GameApp.router.navigate('end', {trigger: true});
-    }
+      $('.actiontext').css('color', 'black');
+      changeEnemyHealth(move.damage);
+      logGameText(playerOneCharacter, enemyCharacter, move);
+      displayGameText(playerOneCharacter, enemyCharacter, move);
+      playerOneTurn = false;
+      if(enemyHealth > 0) {
+        enemyTurn();
+      } else {
+        GameApp.router.navigate('end', {trigger: true});
+      }
     }
   });
 
   GameApp.vent.on('enemyMoveSelect', function(move) {
-    changePlayerHealth(move.damage);
-    logGameText(enemyCharacter, playerOneCharacter, move);
-    if (playerHealth > 0) {
-      playerOneTurn = true;
-    } else {
-      GameApp.router.navigate('end', {trigger: true});
-    }
+    setTimeout(function() {
+      $('.actiontext').css('color', 'red');
+      changePlayerHealth(move.damage);
+      logGameText(enemyCharacter, playerOneCharacter, move);
+      displayGameText(enemyCharacter, playerOneCharacter, move);
+
+      if (playerHealth > 0) {
+        playerOneTurn = true;
+      } else {
+        GameApp.router.navigate('end', {trigger: true});
+      }
+    }, 5000);
   });
 
   GameApp.vent.on('playerTurn: complete', function() {
@@ -168,6 +175,18 @@ window.GameApp = window.GameApp || {};
 
   function logGameText(pokemon, opponent, move) {
     console.log(pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!");
+  }
+
+  function displayGameText(pokemon, opponent, move) {
+    // if (playerOneTurn !== true) {
+    //   $('.gameTextString').css('color', 'red');
+    // }
+    // else {
+    //   $('.gameTextString').css('color', 'black');
+    // }
+    //
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!" + "</p>");
   }
 
 })();

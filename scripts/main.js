@@ -29,7 +29,7 @@ window.GameApp = window.GameApp || {};
       if(enemyHealth > 0) {
         enemyTurn();
       } else {
-        GameApp.router.navigate('end', {trigger: true});
+        GameApp.router.navigate('win', {trigger: true});
       }
     }
   });
@@ -44,7 +44,7 @@ window.GameApp = window.GameApp || {};
       if (playerHealth > 0) {
         playerOneTurn = true;
       } else {
-        GameApp.router.navigate('end', {trigger: true});
+        GameApp.router.navigate('lose', {trigger: true});
       }
     }, 5000);
   });
@@ -80,14 +80,12 @@ window.GameApp = window.GameApp || {};
 
         $('.character-portrait').on('click', function(){
           if (playerOneCharacter !== undefined){
-
           enemyCharacter=($(this).text());
           $('.player-two').replaceWith($(this).html());
           console.log("Player Two has chosen" + " " + enemyCharacter);
           }
         });
       });
-
     });
   });
 

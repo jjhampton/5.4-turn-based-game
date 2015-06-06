@@ -178,13 +178,6 @@ window.GameApp = window.GameApp || {};
   }
 
   function displayGameText(pokemon, opponent, move) {
-    // if (playerOneTurn !== true) {
-    //   $('.gameTextString').css('color', 'red');
-    // }
-    // else {
-    //   $('.gameTextString').css('color', 'black');
-    // }
-    //
     $('.actiontext').html("");
     $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!" + "</p>");
   }

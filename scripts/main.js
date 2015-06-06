@@ -62,7 +62,7 @@ window.GameApp = window.GameApp || {};
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-      });
+        });
 
       $('.character-portrait').on('click', function(){
         playerOneCharacter=($(this).text());
@@ -78,9 +78,9 @@ window.GameApp = window.GameApp || {};
           enemyCharacter=($(this).text());
           $('.player-two').replaceWith($(this).html());
           console.log("Player Two has chosen" + " " + enemyCharacter);
-        }
+          }
+        });
       });
-    });
 
     });
   });
@@ -136,7 +136,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function changeEnemyHealth(damage) {
-    var newHealth = enemyHealth - damage;
+    var newHealth = enemyHealth - (damage * 0.5);
     displayEnemyHealth(newHealth);
     enemyHealth = newHealth;
   }
@@ -147,7 +147,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function changePlayerHealth(damage) {
-    var newHealth = playerHealth - damage;
+    var newHealth = playerHealth - (damage * 0.5);
     displayPlayerHealth(newHealth);
     playerHealth = newHealth;
   }

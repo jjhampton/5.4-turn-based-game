@@ -67,8 +67,14 @@ li {
 .player-one,
 .player-two {
   width: 150px;
-  height: 200px;
-  border: 4px solid $blue;
+  height: 150px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.selection-stage {
+  margin-top: 20px;
+  margin-left: 275px;
 }
 
  // Arena Styles

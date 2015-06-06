@@ -7,7 +7,8 @@ window.GameApp = window.GameApp || {};
     routes: {
       '': 'index', //Title Screen & Character-Select-Grid (Sean's template design)
       'game': 'game', //Game screen (Austin's template design)
-      'end' : 'end' //Game Over Screen that displays winner (John's template design)
+      'win' : 'win',
+      'lose': 'lose' //Game Over Screen that displays winner (John's template design)
 
     },
 
@@ -21,8 +22,12 @@ window.GameApp = window.GameApp || {};
 
     },
 
-    end: function() {
-      $('.application').html(JST['gameover']()); // routes user to game-over screen
+    win: function() {
+      $('.application').html(JST['gamewin']()); // routes user to game-over screen
+    },
+
+    lose: function() {
+      $('.application').html(JST['gamelose']()); // routes user to game-over screen
     }
   });
 

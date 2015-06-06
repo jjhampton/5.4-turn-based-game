@@ -4,10 +4,16 @@ window.GameApp = window.GameApp || {};
 (function(){
   'use strict';
   var playerOneCharacter;
+<<<<<<< HEAD
   var playerTwoCharacter;
   var playerHealth = 100;
   var enemyHealth = 100;
   var playerOneTurn = true;
+=======
+  var enemyCharacter;
+  var playerOneHealth = 100;
+  var enemyHealth = 100;
+>>>>>>> Change references to 'PlayerTwo' to 'enemy' in main.js - representing computer opponent
 
 
   // Create an event hub
@@ -47,8 +53,8 @@ window.GameApp = window.GameApp || {};
           if (playerOneCharacter !== undefined){
 
 
-          playerTwoCharacter=($(this).text());
-          console.log("Player Two has chosen" + " " + playerTwoCharacter);
+          enemyCharacter=($(this).text());
+          console.log("The enemy Pokemon will be" + " " + enemyCharacter);
         }
       });
 
@@ -67,7 +73,7 @@ window.GameApp = window.GameApp || {};
       });
 
       var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){
-        return pokemon.name === playerTwoCharacter;
+        return pokemon.name === enemyCharacter;
       });
 
       var moveSetOne = selectedPokemonOne[0].moves;

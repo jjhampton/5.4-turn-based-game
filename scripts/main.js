@@ -5,6 +5,8 @@ window.GameApp = window.GameApp || {};
   'use strict';
   var playerOneCharacter;
   var playerTwoCharacter;
+  var playerOneHealth = 100;
+  var playerTwoHealth = 100;
 
 
   // Create an event hub
@@ -30,11 +32,10 @@ window.GameApp = window.GameApp || {};
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-
       }); // routes user to game screen
       $('.character-portrait').on('click', function(){
         playerOneCharacter=($(this).text());
-        console.log(playerOneCharacter);
+        console.log("Player One has chosen" + " " + playerOneCharacter);
         $('.character-portrait').off('click');
 
         $('.character-portrait').on('click', function(){
@@ -42,7 +43,7 @@ window.GameApp = window.GameApp || {};
 
 
           playerTwoCharacter=($(this).text());
-          console.log(playerTwoCharacter);
+          console.log("Player Two has chosen" + " " + playerTwoCharacter);
         }
       });
 
@@ -64,7 +65,9 @@ window.GameApp = window.GameApp || {};
         return pokemon.name === playerTwoCharacter;
       });
 
-      displayPlayerPokemon(selectedPokemonOne[0]);
+      var moveSetOne = selectedPokemonOne[0].moves;
+      var moveSetTwo = selectedPokemonTwo[0].moves;
+      displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);
       displayEnemyPokemon(selectedPokemonTwo[0]);
 
 
@@ -87,21 +90,29 @@ window.GameApp = window.GameApp || {};
 
 
 
-  function displayBattleMenu(pokemon) {
-    var moveSet = pokemon.moves;
-    $('.battlemenu').html(JST['battlemenu'](moveSet));
+  function displayBattleMenu(moveset) {
+    $('.battlemenu').html(JST['battlemenu'](moveset));
+    $('.firstmove').on('click', function(event) {
+      console.log(moveset[0].damage);
+    });
+    $('.secondmove').on('click', function(event) {
+      console.log(moveset[1].damage);
+    });
+    $('.thirdmove').on('click', function(event) {
+      console.log(moveset[2].damage);
+    });
+    $('.fourthmove').on('click', function(event) {
+      console.log(moveset[3].damage);
+    });
   }
 
-  function displayPlayerPokemon(pokemon) {
+  function displayPlayerPokemon(pokemon, moveset) {
       $('.pokemondisplay').append(JST['player'](pokemon));
-      displayBattleMenu(pokemon);
-
+      displayBattleMenu(moveset);
   }
 
   function displayEnemyPokemon(pokemon) {
-
       $('.pokemondisplay').append(JST['enemy'](pokemon));
-
 }
 
 

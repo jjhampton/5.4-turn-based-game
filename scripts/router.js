@@ -18,12 +18,12 @@ window.GameApp = window.GameApp || {};
 
     game: function() {
       $('.application').html(JST['renderarena']());
-      
-    }
 
-    // end: function() {
-    //   $('.application').html(JST['game']()); // routes user to game-over screen
-    // }
+    },
+
+    end: function() {
+      $('.application').html(JST['gameover']()); // routes user to game-over screen
+    }
   });
 
   GameApp.router = new GameApp.GameRouter();

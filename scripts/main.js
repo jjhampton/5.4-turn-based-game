@@ -23,13 +23,24 @@ window.GameApp = window.GameApp || {};
     if (playerOneTurn) {
     changeEnemyHealth(damage);
     playerOneTurn = false;
-    enemyTurn();
+    if(enemyHealth > 0) {
+      enemyTurn();
+    } else {
+      GameApp.router.navigate('end', {trigger: true});
+    }
     }
   });
 
   GameApp.vent.on('enemymoveselect', function(damage) {
+    if(damage === 0) {
+
+    }
     changePlayerHealth(damage);
-    playerOneTurn = true;
+    if (playerHealth > 0) {
+      playerOneTurn = true;
+    } else {
+      GameApp.router.navigate('end', {trigger: true});
+    }
   });
 
   GameApp.vent.on('playerTurn: complete', function() {
@@ -153,8 +164,9 @@ window.GameApp = window.GameApp || {};
 
   function getEnemyMoveChoice(moveset) {
     console.log("The enemy moveset is: " + moveset);
-    var movesetIndex = _.random(0, 4);
-    console.log ("The enemy move chosen is: " + moveset[movesetIndex] + "for " + moveset[movesetIndex].damage);
+    var movesetIndex = _.random(0, 3);
+    console.log ("The enemy move chosen is: " + moveset[movesetIndex].name + " " + "for " + moveset[movesetIndex].damage);
+    console.log(movesetIndex);
     return moveset[movesetIndex].damage;
   }
 

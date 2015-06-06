@@ -21,7 +21,6 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('moveselect', function(damage) {
     if (playerOneTurn) {
-    console.log(damage);
     changeEnemyHealth(damage);
     playerOneTurn = false;
     enemyTurn();
@@ -29,7 +28,6 @@ window.GameApp = window.GameApp || {};
   });
 
   GameApp.vent.on('enemymoveselect', function(damage) {
-    console.log(damage);
     changePlayerHealth(damage);
     playerOneTurn = true;
   });
@@ -146,14 +144,13 @@ window.GameApp = window.GameApp || {};
 
   function enemyTurn() {
     var moveDamage =  getEnemyMoveChoice(enemyMoveSet);
-    console.log(moveDamage);
     GameApp.vent.trigger('enemymoveselect', moveDamage);
   }
 
   function getEnemyMoveChoice(moveset) {
     console.log("The enemy moveset is: " + moveset);
     var movesetIndex = _.random(0, 4);
-    console.log ("The enemy move chosen is" + moveset[movesetIndex]);
+    console.log ("The enemy move chosen is: " + moveset[movesetIndex] + "for " + moveset[movesetIndex].damage);
     return moveset[movesetIndex].damage;
   }
 

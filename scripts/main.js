@@ -19,9 +19,10 @@ window.GameApp = window.GameApp || {};
     $('.application').append(JST['character-select']()); // this will need changing
   });
 
-  GameApp.vent.on('moveselect', function(damage) {
+  GameApp.vent.on('playerMoveSelect', function(move) {
     if (playerOneTurn) {
-    changeEnemyHealth(damage);
+    changeEnemyHealth(move.damage);
+    logGameText(playerOneCharacter, enemyCharacter, move);
     playerOneTurn = false;
     if(enemyHealth > 0) {
       enemyTurn();
@@ -31,11 +32,9 @@ window.GameApp = window.GameApp || {};
     }
   });
 
-  GameApp.vent.on('enemymoveselect', function(damage) {
-    if(damage === 0) {
-
-    }
-    changePlayerHealth(damage);
+  GameApp.vent.on('enemyMoveSelect', function(move) {
+    changePlayerHealth(move.damage);
+    logGameText(enemyCharacter, playerOneCharacter, move);
     if (playerHealth > 0) {
       playerOneTurn = true;
     } else {
@@ -109,19 +108,19 @@ window.GameApp = window.GameApp || {};
   function displayBattleMenu(moveset) {
     $('.battlemenu').html(JST['battlemenu'](moveset));
     $('.firstmove').on('click', function(event) {
-      GameApp.vent.trigger('moveselect', moveset[0].damage);
+      GameApp.vent.trigger('playerMoveSelect', moveset[0]);
       //changeHealth(moveset[0].damage);
     });
     $('.secondmove').on('click', function(event) {
-      GameApp.vent.trigger('moveselect', moveset[1].damage);
+      GameApp.vent.trigger('playerMoveSelect', moveset[1]);
       //changeHealth(moveset[1].damage);
     });
     $('.thirdmove').on('click', function(event) {
-      GameApp.vent.trigger('moveselect', moveset[2].damage);
+      GameApp.vent.trigger('playerMoveSelect', moveset[2]);
       //changeHealth(moveset[2].damage);
     });
     $('.fourthmove').on('click', function(event) {
-      GameApp.vent.trigger('moveselect', moveset[3].damage);
+      GameApp.vent.trigger('playerMoveSelect', moveset[3]);
       //changeHealth(moveset[3].damage);
     });
   }
@@ -158,16 +157,17 @@ window.GameApp = window.GameApp || {};
   }
 
   function enemyTurn() {
-    var moveDamage =  getEnemyMoveChoice(enemyMoveSet);
-    GameApp.vent.trigger('enemymoveselect', moveDamage);
+    var enemyMove =  getEnemyMoveChoice(enemyMoveSet);
+    GameApp.vent.trigger('enemyMoveSelect', enemyMove);
   }
 
   function getEnemyMoveChoice(moveset) {
-    console.log("The enemy moveset is: " + moveset);
     var movesetIndex = _.random(0, 3);
-    console.log ("The enemy move chosen is: " + moveset[movesetIndex].name + " " + "for " + moveset[movesetIndex].damage);
-    console.log(movesetIndex);
-    return moveset[movesetIndex].damage;
+    return moveset[movesetIndex];
+  }
+
+  function logGameText(pokemon, opponent, move) {
+    console.log(pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!");
   }
 
 })();

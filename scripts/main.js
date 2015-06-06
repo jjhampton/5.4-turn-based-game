@@ -4,9 +4,12 @@ window.GameApp = window.GameApp || {};
 (function(){
   'use strict';
   var playerOneCharacter;
-  var playerTwoCharacter;
-  var playerOneHealth = 100;
-  var playerTwoHealth = 100;
+  var enemyCharacter;
+  var playerHealth = 100;
+  var enemyHealth = 100;
+  var playerOneTurn = true;
+  var moveSetOne;
+  var enemyMoveSet;
 
 
   // Create an event hub
@@ -16,12 +19,28 @@ window.GameApp = window.GameApp || {};
     $('.application').append(JST['character-select']()); // this will need changing
   });
 
+  GameApp.vent.on('moveselect', function(damage) {
+    if (playerOneTurn) {
+    changeEnemyHealth(damage);
+    playerOneTurn = false;
+    enemyTurn();
+    }
+  });
+
+  GameApp.vent.on('enemymoveselect', function(damage) {
+    changePlayerHealth(damage);
+    playerOneTurn = true;
+  });
+
+  GameApp.vent.on('playerTurn: complete', function() {
+    enemyMove();
+  });
+
   $(document).ready(function(){
     GameApp.router = new GameApp.GameRouter();
     Backbone.history.start();
     GameApp.router.navigate('index', {trigger: true});
-
-    });
+  });
 
   // Set Event listener on character-selected-event: for whatever event is fired after both characters are selected on the 'CHARACTER SELECT GRID', a "BEGIN GAME BUTTON" or similar is pressed,  and we want to route to the game screen
   $(document).on('click', '.start-button', function(event){
@@ -42,8 +61,8 @@ window.GameApp = window.GameApp || {};
           if (playerOneCharacter !== undefined){
 
 
-          playerTwoCharacter=($(this).text());
-          console.log("Player Two has chosen" + " " + playerTwoCharacter);
+          enemyCharacter=($(this).text());
+          console.log("The enemy Pokemon will be" + " " + enemyCharacter);
         }
       });
 
@@ -62,47 +81,33 @@ window.GameApp = window.GameApp || {};
       });
 
       var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){
-        return pokemon.name === playerTwoCharacter;
+        return pokemon.name === enemyCharacter;
       });
 
-      var moveSetOne = selectedPokemonOne[0].moves;
-      var moveSetTwo = selectedPokemonTwo[0].moves;
+      moveSetOne = selectedPokemonOne[0].moves;
+      enemyMoveSet = selectedPokemonTwo[0].moves;
       displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);
       displayEnemyPokemon(selectedPokemonTwo[0]);
-
-
-
-
-
+    });
   });
-
-  // EXAMPLE FROM JAKE FROM CHAT-APP
-  // function fetchMessages(){
-  //   return $.ajax({
-  //     url: "http://tiny-lasagna-server.herokuapp.com/collections/messages"
-  //   }).then(function(messages){
-  //     ** TRIGGER THE data:messages:sync event **
-  //     ChatApp.vent.trigger('data:messages:sync', messages);
-  //   });
-  // }
-
-
-
-
 
   function displayBattleMenu(moveset) {
     $('.battlemenu').html(JST['battlemenu'](moveset));
     $('.firstmove').on('click', function(event) {
-      console.log(moveset[0].damage);
+      GameApp.vent.trigger('moveselect', moveset[0].damage);
+      //changeHealth(moveset[0].damage);
     });
     $('.secondmove').on('click', function(event) {
-      console.log(moveset[1].damage);
+      GameApp.vent.trigger('moveselect', moveset[1].damage);
+      //changeHealth(moveset[1].damage);
     });
     $('.thirdmove').on('click', function(event) {
-      console.log(moveset[2].damage);
+      GameApp.vent.trigger('moveselect', moveset[2].damage);
+      //changeHealth(moveset[2].damage);
     });
     $('.fourthmove').on('click', function(event) {
-      console.log(moveset[3].damage);
+      GameApp.vent.trigger('moveselect', moveset[3].damage);
+      //changeHealth(moveset[3].damage);
     });
   }
 
@@ -113,44 +118,40 @@ window.GameApp = window.GameApp || {};
 
   function displayEnemyPokemon(pokemon) {
       $('.pokemondisplay').append(JST['enemy'](pokemon));
-}
+  }
 
+  function changeEnemyHealth(damage) {
+    var newHealth = enemyHealth - damage;
+    displayEnemyHealth(newHealth);
+    enemyHealth = newHealth;
+  }
 
+  function displayEnemyHealth(health) {
+    var percentHealth = health + "%";
+    $('.enemyhealthbar').css({"width": percentHealth});
+  }
 
+  function changePlayerHealth(damage) {
+    var newHealth = playerHealth - damage;
+    displayPlayerHealth(newHealth);
+    playerHealth = newHealth;
+  }
 
+  function displayPlayerHealth(health) {
+    var percentHealth = health + "%";
+    $('.playerhealthbar').css({"width": percentHealth});
+  }
 
+  function enemyTurn() {
+    var moveDamage =  getEnemyMoveChoice(enemyMoveSet);
+    GameApp.vent.trigger('enemymoveselect', moveDamage);
+  }
 
+  function getEnemyMoveChoice(moveset) {
+    console.log("The enemy moveset is: " + moveset);
+    var movesetIndex = _.random(0, 4);
+    console.log ("The enemy move chosen is: " + moveset[movesetIndex] + "for " + moveset[movesetIndex].damage);
+    return moveset[movesetIndex].damage;
+  }
 
-  // $(document).ready(function(){
-  //
-  //     route();
-  //
-  //     $(document).on('click', '.start-button', function(event){
-  //       event.preventDefault();
-  //       window.location.hash = '/charselect';
-  //     });
-  //
-  //     $(window).on('hashchange', function(event){
-  //       event.preventDefault();
-  //       route();
-  //     });
-  //   });
-  //
-  //
-  //   function route(){
-  //     switch(window.location.hash){
-  //       case '':
-  //       $('.application').html(JST['title-screen']());
-  //       break;
-  //     case '#/charselect':
-  //       charSelect()
-  //       break;
-  //     }
-  //   }
-  //
-  //   function charSelect(){
-  //     $('.application').append(JST['character-select']());
-  //   }
-  //
-});
 })();

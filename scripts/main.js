@@ -51,22 +51,26 @@ window.GameApp = window.GameApp || {};
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-      }); // routes user to game screen
+      });
+
       $('.character-portrait').on('click', function(){
         playerOneCharacter=($(this).text());
+        $('.player-one').replaceWith($(this).html());
+
         console.log("Player One has chosen" + " " + playerOneCharacter);
+
         $('.character-portrait').off('click');
 
         $('.character-portrait').on('click', function(){
           if (playerOneCharacter !== undefined){
 
-
           enemyCharacter=($(this).text());
-          console.log("The enemy Pokemon will be" + " " + enemyCharacter);
+          $('.player-two').replaceWith($(this).html());
+          console.log("Player Two has chosen" + " " + enemyCharacter);
         }
       });
+    });
 
-      });
     });
   });
 
@@ -77,7 +81,7 @@ window.GameApp = window.GameApp || {};
       url: '../pokemon.json'
     }).then(function(pokemonlist) {
       var selectedPokemonOne = _.filter(pokemonlist, function(pokemon){
-        return pokemon.name === playerOneCharacter;
+                return pokemon.name === playerOneCharacter;
       });
 
       var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){

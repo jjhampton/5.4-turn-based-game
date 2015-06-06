@@ -5,6 +5,8 @@ window.GameApp = window.GameApp || {};
   'use strict';
   var playerOneCharacter;
   var playerTwoCharacter;
+  var playerOneHealth = 100;
+  var playerTwoHealth = 100;
 
 
   // Create an event hub
@@ -110,9 +112,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function displayEnemyPokemon(pokemon) {
-
       $('.pokemondisplay').append(JST['enemy'](pokemon));
-
 }
 
 

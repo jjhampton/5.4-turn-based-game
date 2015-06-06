@@ -231,3 +231,28 @@ li {
   border-radius: 3px;
   color: black;
 }
+
+.losescreen {
+  @include outer-container($max-width);
+  background-image: url('../../assets/centre.png');
+  background-size: cover;
+}
+
+.gameboy {
+  @include span-columns(3.9);
+  @include shift(4.3);
+  height: 600px;
+  background-image: url("../../assets/gameboy.jpg");
+  background-size: cover;
+  background-position: -40px -5px;
+  background-repeat: no-repeat;
+}
+
+.loseimage {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  z-index: 1;
+  margin-top: 50px;
+  margin-left: 470px;
+}

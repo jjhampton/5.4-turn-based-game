@@ -54,10 +54,24 @@ body {
   border: 4px solid $blue;
 }
 
+.character-portrait img {
+  width: 96px;
+  height: 96px;
+  padding: 5px;
+}
+
 li {
   list-style: none;
 }
 
+.player-one,
+.player-two {
+  width: 150px;
+  height: 200px;
+  border: 4px solid $blue;
+}
+
+ // Arena Styles
 .arenacontent {
   @include outer-container($max-width);
   height: auto;

@@ -23,14 +23,19 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('playerMoveSelect', function(move) {
     var variedDamage; //damage value that will be slightly different each time
+    if(move.damage !== 0) {
     variedDamage = move.damage + getDamageVariance(); //add variety to damage values
     variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
     //ensure variedDamage is not a negative number, will set equal to at least 0
     if (variedDamage < 0) {
-      variedDamage = 0;
+      variedDamage = 1; //changed from zero so that if damage is randomly 0, I can tell them apart
     }
-
+  } else {
+    variedDamage = 0;
+  }
     if (playerOneTurn) {
+      //if playerOneTurn is true AND damage is above zero, do this.
+      if(variedDamage > 0) {
       changeEnemyHealth(variedDamage); //updates health bar
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
@@ -40,9 +45,14 @@ window.GameApp = window.GameApp || {};
         enemyTurn();
       } else {
         GameApp.router.navigate('win', {trigger: true});
-      }
+        }
+      } else {
+        //if playerOneTurn is true AND damage is not above zero, do this
+      $('.actiontext').css('color', 'black');
+      determineEffectMove(move);
     }
-  });
+  } //end of if(playerturn)
+}); //end of click event
 
   GameApp.vent.on('enemyMoveSelect', function(move) {
     setTimeout(function() {
@@ -194,15 +204,26 @@ window.GameApp = window.GameApp || {};
     GameApp.vent.trigger('enemyMoveSelect', enemyMove);
   }
 
+  function determineEffectMove(move) {
+    var sleepEffects = ["Sleep Powder", "Hypnosis", "Sing", "Hypnotize"];
+    var paralyzeEffects = ["Thunder Wave", "ThunderShock", "Scare", "Howl"];
+    var healEffects = ["Photosynthesis", "Fade", "Rest"];
+    if(sleepEffects.indexOf(move.name) !== -1) {
+      displaySleepText(move)
+    }
+  }
+
   function getEnemyMoveChoice(moveset) {
     var movesetIndex = _.random(0, 3);
     return moveset[movesetIndex];
   }
 
   function displayGameText(pokemon, opponent, move, damage) {
-    $('.actiontext').html("");
-    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
+      $('.actiontext').html("");
+      $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
   }
+
+  function displaySleepText(move)
 
   //returns random number between 0(exclusive) and 20(inclusive)
   function getDamageVariance() {

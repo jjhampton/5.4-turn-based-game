@@ -10,6 +10,9 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $very-light-gray: #fafafa;
+$pokemon-yellow: #ffca43;
+$pokemon-blue: #2d68a8;
+$pokemon-red: #dd423e;
 
 $base-font-color: $dark-gray;
 $base-background-color: $very-light-gray;
@@ -18,4 +21,285 @@ body {
   font-family: $base-font-family;
   background-color: $base-background-color;
   color: $base-font-color;
+}
+
+/* .application {
+  width: 800px;
+  height: auto;
+  margin: 0 auto;
+} */
+
+// Title Screen Styles
+
+.title-image {
+  margin: 0 auto;
+  display: block;
+}
+
+
+.start-button {
+  position: absolute;
+  top: 429px;
+  left: 933px;
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
+  font-weight: bold;
+  color: $pokemon-red;
+  background-color: $pokemon-yellow;
+}
+
+
+
+// Character Selection Grid Styles
+
+.character-grid-container {
+  width: 800px;
+  height: auto;
+  margin: 10px auto;
+}
+
+.character-portrait {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 4px solid $pokemon-red;
+  border-radius: 20%;
+  background: #1a82f7;
+}
+
+.character-portrait img {
+  width: 96px;
+  height: 96px;
+  padding: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.player-on-stage {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.selection-stage {
+  width: 800px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: -webkit-radial-gradient(circle, #1a82f7, #fff);
+  }
+
+.selection-stage-divider {
+  display: none;
+}
+
+.selection-stage-divider h3 {
+  font-family: impact;
+  font-size: 30px;
+  font-style: italic;
+  color: $pokemon-yellow;
+}
+
+.selection-stage img {
+  width: 96px;
+  height: 96px;
+}
+
+.start-game-button {
+  display: none;
+  width: 100%;
+}
+
+
+
+ // Arena Styles
+.arenacontent {
+  @include outer-container($max-width);
+  height: auto;
+  font-family: 'VT323', ;
+  overflow: hidden;
+}
+
+.pokemondisplay {
+  @include span-columns(8);
+  @include shift(2);
+  height: 400px;
+  margin-top: 100px;
+  background-image: url('../../assets/battlebackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.playerbox {
+  width: auto;
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 50px;
+  height: auto;
+}
+
+.playerpokemoninfo {
+  @include span-columns(2.5);
+  height: 60px;
+  position: absolute;
+  margin-top: 325px;
+  margin-left: 450px;
+  background-color: rgba(248, 243, 217, 1);
+  border-radius: 30px;
+  border: 2px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+.enemyinfo {
+  @include span-columns(2.5);
+  position: absolute;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 30px;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: rgba(248, 243, 217, 1);
+  text-align: center;
+}
+
+.playerhealthbox {
+  @include span-columns(10);
+  float: right;
+  margin-top: 5px;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+.enemyhealthbox {
+  @include span-columns(10);
+  float: right;
+  margin-top: 5px;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+.playerhealthbar {
+  width: 100%;
+  height: 8px;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.enemyhealthbar {
+  width: 100%;
+  height: 8px;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.playerhp {
+  @include span-columns(11);
+  @include shift(.5);
+  margin-top: 5px;
+  padding: 2px;
+  color: rgba(255, 213, 73, 1);
+  border-radius: 10px;
+  background-color: rgba(101, 98, 82, 1);
+}
+
+.enemyhp {
+  @include span-columns(11);
+  @include shift(.5);
+  margin-top: 5px;
+  padding: 2px;
+  color: rgba(255, 213, 73, 1);
+  border-radius: 10px;
+  background-color: rgba(101, 98, 82, 1);
+}
+
+.playerpokemonname {
+  font-size: 20px;
+}
+
+.enemyname {
+  font-size: 20px;
+}
+
+.enemybox {
+  width: auto;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 450px;
+}
+
+.battlebar {
+  @include span-columns(8);
+  @include shift(2);
+  height: 120px;
+  background-color: rgba(74, 67, 81, 1);
+}
+
+.actiontext {
+  @include span-columns(7);
+  height: 100px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.actionoptions {
+  @include span-columns(4.7 of 12);
+  @include omega();
+  float: right;
+}
+
+.actionmove {
+  @include span-columns(5.8);
+  @include omega();
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: white;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 3px;
+  color: black;
+}
+
+.losescreen {
+  @include outer-container($max-width);
+  background-image: url('../../assets/centre.png');
+  background-size: cover;
+}
+
+.gameboy {
+  @include span-columns(3.9);
+  @include shift(4.3);
+  height: 600px;
+  background-image: url("../../assets/gameboy.jpg");
+  background-size: cover;
+  background-position: -40px -5px;
+  background-repeat: no-repeat;
+}
+
+.loseimage {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  z-index: 1;
+  margin-top: 50px;
+  margin-left: 470px;
 }

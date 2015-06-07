@@ -33,7 +33,7 @@ window.GameApp = window.GameApp || {};
       if(move.damage !== 0) {
         variedDamage = move.damage + getDamageVariance(); //add variety to damage values
         variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
-    //ensure variedDamage is not a negative number, will set equal to at least 0
+        //ensure variedDamage is not a negative number, will set equal to at least 1
         if (variedDamage < 0) {
           variedDamage = 1; //changed from zero so that if damage is randomly 0, I can tell them apart
         }
@@ -60,7 +60,7 @@ window.GameApp = window.GameApp || {};
       } else {
         //if playerOneTurn is true AND damage is not above zero, do this
       $('.actiontext').css('color', 'black');
-      determineEffectMove(move);
+      determineEffectMove(move, playerOneCharacter, enemyCharacter);
       }
     } //end of if(playerturn)
   }); //end of click event
@@ -94,7 +94,7 @@ window.GameApp = window.GameApp || {};
           }
         } else {
           $('.actiontext').css('color', 'black');
-          determineEffectMove(move);
+          determineEffectMove(move, enemyCharacter, playerOneCharacter);
         }
       }
       GameApp.vent.trigger('playerMovePrompt');
@@ -253,12 +253,12 @@ window.GameApp = window.GameApp || {};
     GameApp.vent.trigger('enemyMoveSelect', enemyMove);
   }
 
-  function determineEffectMove(move) {
+  function determineEffectMove(move, pokemon, opponent) {
     var sleepEffects = ["Sleep Powder", "Hypnosis", "Sing", "Hypnotize"];
     var paralyzeEffects = ["Thunder Wave", "ThunderShock", "Scare", "Howl"];
     var healEffects = ["Photosynthesis", "Fade", "Rest"];
     if(sleepEffects.indexOf(move.name) !== -1) {
-      displaySleepText(playerOneCharacter, enemyCharacter, move);
+      displaySleepText(pokemon, opponent, move);
       if(playerOneTurn) {
         enemyAlert = false;
       } else {
@@ -267,7 +267,7 @@ window.GameApp = window.GameApp || {};
       }
     }
     if(paralyzeEffects.indexOf(move.name) !== -1) {
-      displayParalyzeText(playerOneCharacter, enemyCharacter, move);
+      displayParalyzeText(pokemon, opponent, move);
       if(playerOneTurn) {
         enemyAlert = false;
       } else {
@@ -276,7 +276,7 @@ window.GameApp = window.GameApp || {};
       }
     }
     if(healEffects.indexOf(move.name) !== -1) {
-      displayHealText(playerOneCharacter, enemyCharacter, move);
+      displayHealText(pokemon, opponent, move);
       if(playerOneTurn) {
         playerHeal(move);
       } else {
@@ -310,7 +310,7 @@ window.GameApp = window.GameApp || {};
 
   function displayParalyzeText(pokemon, opponent, move) {
     $('.actiontext').html("");
-    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to paralyze " + opponent + " making " + opponent + "unable to move for one turn!" + "</p>");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to paralyze " + opponent + " making " + opponent + " unable to move for one turn!" + "</p>");
   }
 
   function displayHealText(pokemon, opponent, move) {

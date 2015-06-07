@@ -23,6 +23,10 @@ window.GameApp = window.GameApp || {};
     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
   });
 
+  GameApp.vent.on('playerMovePrompt', function() {
+    displayPlayerMovePrompt();
+  });
+
   GameApp.vent.on('playerMoveSelect', function(move) {
     var variedDamage; //damage value that will be slightly different each time
     //if damage isn't an effect move and an effect move wasn't just played, you can hit opponent
@@ -57,16 +61,16 @@ window.GameApp = window.GameApp || {};
         //if playerOneTurn is true AND damage is not above zero, do this
       $('.actiontext').css('color', 'black');
       determineEffectMove(move);
-    }
-  } //end of if(playerturn)
-}); //end of click event
+      }
+    } //end of if(playerturn)
+  }); //end of click event
 
   GameApp.vent.on('enemyMoveSelect', function(move) {
     setTimeout(function() {
       var variedDamage; //damage value that will be slightly different each time
       if(move.damage !== 0) {
         variedDamage= move.damage + getDamageVariance(); //add variety to damage values
-      //ensure variedDamage is not a negative number, will set equal to at least 0
+      //ensure variedDamage is not a negative number, will set equal to at least 1
         if (variedDamage < 0) {
           variedDamage = 1;
         }
@@ -93,6 +97,7 @@ window.GameApp = window.GameApp || {};
           determineEffectMove(move);
         }
       }
+      GameApp.vent.trigger('playerMovePrompt');
     }, 3000);
   });
 
@@ -161,6 +166,7 @@ window.GameApp = window.GameApp || {};
       enemyMoveSet = selectedPokemonTwo[0].moves;
       displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);
       displayEnemyPokemon(selectedPokemonTwo[0]);
+      GameApp.vent.trigger('playerMovePrompt');
     });
   });
 
@@ -284,9 +290,17 @@ window.GameApp = window.GameApp || {};
     return moveset[movesetIndex];
   }
 
-  function displayGameText(pokemon, opponent, move, damage) {
+  function displayPlayerMovePrompt() {
+    setTimeout(function() {
       $('.actiontext').html("");
-      $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
+      $('.actiontext').css('color', 'black');
+      $('.actiontext').html("<p class='gameTextString' + >" + "Choose your move!" + "</p>");
+    }, 3000);
+  }
+
+  function displayGameText(pokemon, opponent, move, damage) {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
   }
 
   function displaySleepText(pokemon, opponent, move) {

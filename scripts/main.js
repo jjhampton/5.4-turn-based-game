@@ -106,6 +106,7 @@ window.GameApp = window.GameApp || {};
             $('.enemy-selection-status').removeClass('pulse');
             $('.selection-waiting-alert').css('display', 'none');
             $('.start-game-button').css('display', 'block');
+            $('.character-portrait').off('click');
           }
         });
       });

@@ -139,11 +139,11 @@ li {
   display: none;
   width: 100%;
   font-family: impact;
-  font-size: 40px;
+  font-size: 30px;
   font-style: italic;
-  color: $pokemon-red;
-  background: $pokemon-yellow;
-  border: 2px solid $pokemon-blue;
+  color: $dark-gray;
+  background: linear-gradient(to right, $pokemon-yellow, #fff, $pokemon-blue);
+  border: 2px solid $pokemon-red;
 }
 
 

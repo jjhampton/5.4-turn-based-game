@@ -15,8 +15,10 @@ window.GameApp = window.GameApp || {};
   // Create an event hub
   GameApp.vent = _.extend({}, Backbone.Events);
 
-  GameApp.vent.on('list:display', function(event) { //this will need changing
-    $('.application').append(JST['character-select']()); // this will need changing
+  GameApp.vent.on('list:display', function(event) {
+    $('.application').append(JST['character-select']());
+    //animate scrolldown effect
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
   });
 
   GameApp.vent.on('playerMoveSelect', function(move) {
@@ -79,7 +81,7 @@ window.GameApp = window.GameApp || {};
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-        });
+      });
 
       $('.character-portrait').on('click', function(event){
         playerOneCharacter = $(this).text();

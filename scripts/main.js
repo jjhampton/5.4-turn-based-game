@@ -84,7 +84,8 @@ window.GameApp = window.GameApp || {};
       });
 
       $('.character-portrait').on('click', function(event){
-        playerOneCharacter = $(this).text();
+        playerOneCharacter = $(this).data('name');
+        console.log(playerOneCharacter);
         // $('.player-one').replaceWith($(this).html());
         $('.selection-stage').prepend(JST['stagedplayer']({
           name : $(this).data('name'),
@@ -98,15 +99,15 @@ window.GameApp = window.GameApp || {};
 
         $('.character-portrait').on('click', function(){
           if (playerOneCharacter !== undefined){
-          enemyCharacter = ($(this).text());
-          // $('.player-two').replaceWith($(this).html());
-          $('.selection-stage').append(JST['stagedplayer']({
-            name : $(this).data('name'),
-            imgURL : $('.character-portrait-image', this).attr('src')
-          }));
-          $('.start-game-button').css('display', 'block');
+            enemyCharacter = $(this).data('name');
+            // $('.player-two').replaceWith($(this).html());
+            $('.selection-stage').append(JST['stagedplayer']({
+              name : $(this).data('name'),
+              imgURL : $('.character-portrait-image', this).attr('src')
+            }));
+            $('.start-game-button').css('display', 'block');
 
-          console.log("Player Two has chosen" + " " + enemyCharacter);
+            console.log("Player Two has chosen" + " " + enemyCharacter);
           }
         });
       });
@@ -126,7 +127,7 @@ window.GameApp = window.GameApp || {};
       var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){
         return pokemon.name === enemyCharacter;
       });
-
+      console.log(selectedPokemonOne);
       moveSetOne = selectedPokemonOne[0].moves;
       enemyMoveSet = selectedPokemonTwo[0].moves;
       displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);

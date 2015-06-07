@@ -37,13 +37,18 @@ body {
 
 
 .start-button {
+  position: absolute;
+  top: 429px;
+  left: 933px;
   display: block;
   width: 200px;
   height: 100px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: bold;
+  color: $pokemon-red;
+  background-color: $pokemon-yellow;
 }
 
 
@@ -53,7 +58,7 @@ body {
 .character-grid-container {
   width: 800px;
   height: auto;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .character-portrait {

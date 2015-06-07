@@ -83,7 +83,7 @@ window.GameApp = window.GameApp || {};
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
       });
 
-      $(document).on('click', '.character-portrait', function(event){
+      $('.character-portrait').on('click', function(event) {
         playerOneCharacter = $(this).data('name');
         console.log(playerOneCharacter);
         // $('.player-one').replaceWith($(this).html());
@@ -95,9 +95,9 @@ window.GameApp = window.GameApp || {};
 
         console.log("Player One has chosen" + " " + playerOneCharacter);
 
-        $(document).off('click', 'character-portrait');
+        $('.character-portrait').off('click');
 
-        $(document).on('click', '.character-portrait', function(){
+        $('.character-portrait').on('click', function(event) {
           if (playerOneCharacter !== undefined){
             enemyCharacter = $(this).data('name');
             // $('.player-two').replaceWith($(this).html());
@@ -136,6 +136,9 @@ window.GameApp = window.GameApp || {};
   });
 
   $(document).on('click', '.playagain', function(event) {
+    playerHealth = 100;
+    enemyHealth = 100;
+    playerOneTurn = true;
     GameApp.router.navigate('', {trigger: true});
   });
 

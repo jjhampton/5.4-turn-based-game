@@ -71,8 +71,7 @@ li {
   list-style: none;
 }
 
-.player-one,
-.player-two {
+.player-on-stage {
   width: 150px;
   height: 150px;
   display: inline-block;
@@ -80,11 +79,35 @@ li {
 }
 
 .selection-stage {
+  width: 800px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  text-align: center;
+  background: -webkit-radial-gradient(circle, #1a82f7, #fff);
+  }
+
+.selection-stage-divider {
+  display: none;
 }
+
+.selection-stage-divider h3 {
+  font-size: 30px;
+  font-style: italic;
+  color: #f2340f;
+}
+
+.selection-stage img {
+  width: 96px;
+  height: 96px;
+}
+
+.start-game-button {
+  display: none;
+  width: 100%;
+}
+
+
 
  // Arena Styles
 .arenacontent {

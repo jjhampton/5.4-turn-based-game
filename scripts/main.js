@@ -81,9 +81,14 @@ window.GameApp = window.GameApp || {};
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
         });
 
-      $('.character-portrait').on('click', function(){
-        playerOneCharacter=($(this).text());
-        $('.player-one').replaceWith($(this).html());
+      $('.character-portrait').on('click', function(event){
+        playerOneCharacter = $(this).text();
+        // $('.player-one').replaceWith($(this).html());
+        $('.selection-stage').prepend(JST['stagedplayer']({
+          name : $(this).data('name'),
+          imgURL : $('.character-portrait-image', this).attr('src')
+        }));
+        $('.selection-stage-divider').css('display', 'inline-block');
 
         console.log("Player One has chosen" + " " + playerOneCharacter);
 
@@ -91,8 +96,14 @@ window.GameApp = window.GameApp || {};
 
         $('.character-portrait').on('click', function(){
           if (playerOneCharacter !== undefined){
-          enemyCharacter=($(this).text());
-          $('.player-two').replaceWith($(this).html());
+          enemyCharacter = ($(this).text());
+          // $('.player-two').replaceWith($(this).html());
+          $('.selection-stage').append(JST['stagedplayer']({
+            name : $(this).data('name'),
+            imgURL : $('.character-portrait-image', this).attr('src')
+          }));
+          $('.start-game-button').css('display', 'block');
+
           console.log("Player Two has chosen" + " " + enemyCharacter);
           }
         });

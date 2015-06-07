@@ -20,11 +20,19 @@ window.GameApp = window.GameApp || {};
   });
 
   GameApp.vent.on('playerMoveSelect', function(move) {
+    var variedDamage; //damage value that will be slightly different each time
+    variedDamage = move.damage + getDamageVariance(); //add variety to damage values
+    variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
+    //ensure variedDamage is not a negative number, will set equal to at least 0
+    if (variedDamage < 0) {
+      variedDamage = 0;
+    }
+
     if (playerOneTurn) {
-      $('.actiontext').css('color', 'black');
-      changeEnemyHealth(move.damage);
-      logGameText(playerOneCharacter, enemyCharacter, move);
-      displayGameText(playerOneCharacter, enemyCharacter, move);
+      changeEnemyHealth(variedDamage); //updates health bar
+      $('.actiontext').css('color', 'black'); //Change text color to black for player
+      displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
+
       playerOneTurn = false;
       if(enemyHealth > 0) {
         enemyTurn();
@@ -36,17 +44,24 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('enemyMoveSelect', function(move) {
     setTimeout(function() {
-      $('.actiontext').css('color', 'red');
-      changePlayerHealth(move.damage);
-      logGameText(enemyCharacter, playerOneCharacter, move);
-      displayGameText(enemyCharacter, playerOneCharacter, move);
+      var variedDamage; //damage value that will be slightly different each time
+      variedDamage= move.damage + getDamageVariance(); //add variety to damage values
+
+      //ensure variedDamage is not a negative number, will set equal to at least 0
+      if (variedDamage < 0) {
+        variedDamage = 0;
+      }
+
+      changePlayerHealth(variedDamage); //updates health bar
+      $('.actiontext').css('color', 'red'); //Change text color to red for enemy
+      displayGameText(enemyCharacter, playerOneCharacter, move, variedDamage);
 
       if (playerHealth > 0) {
         playerOneTurn = true;
       } else {
         GameApp.router.navigate('lose', {trigger: true});
       }
-    }, 5000);
+    }, 3000);
   });
 
   GameApp.vent.on('playerTurn: complete', function() {
@@ -114,19 +129,15 @@ window.GameApp = window.GameApp || {};
     $('.battlemenu').html(JST['battlemenu'](moveset));
     $('.firstmove').on('click', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[0]);
-      //changeHealth(moveset[0].damage);
     });
     $('.secondmove').on('click', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[1]);
-      //changeHealth(moveset[1].damage);
     });
     $('.thirdmove').on('click', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[2]);
-      //changeHealth(moveset[2].damage);
     });
     $('.fourthmove').on('click', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[3]);
-      //changeHealth(moveset[3].damage);
     });
   }
 
@@ -140,7 +151,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function changeEnemyHealth(damage) {
-    var newHealth = enemyHealth - (damage * 0.5);
+    var newHealth = enemyHealth - damage;
     displayEnemyHealth(newHealth);
     enemyHealth = newHealth;
   }
@@ -151,7 +162,7 @@ window.GameApp = window.GameApp || {};
   }
 
   function changePlayerHealth(damage) {
-    var newHealth = playerHealth - (damage * 0.5);
+    var newHealth = playerHealth - damage;
     displayPlayerHealth(newHealth);
     playerHealth = newHealth;
   }
@@ -171,13 +182,17 @@ window.GameApp = window.GameApp || {};
     return moveset[movesetIndex];
   }
 
-  function logGameText(pokemon, opponent, move) {
-    console.log(pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!");
+  function displayGameText(pokemon, opponent, move, damage) {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
   }
 
-  function displayGameText(pokemon, opponent, move) {
-    $('.actiontext').html("");
-    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + move.damage + " damage!" + "</p>");
+  //returns random number between 0(exclusive) and 20(inclusive)
+  function getDamageVariance() {
+    var plusOrMinus = Math.random() < 0.5 ? -1 : 1; //randomly sets -1 or 1
+    var randomNumber = Math.floor(Math.random() * (21 - 1)) + 1; //random integer in range of 1 to 20
+    console.log(Math.floor(randomNumber * plusOrMinus));
+    return Math.floor(randomNumber * plusOrMinus);
   }
 
 })();

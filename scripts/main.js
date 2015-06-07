@@ -8,6 +8,8 @@ window.GameApp = window.GameApp || {};
   var playerHealth = 100;
   var enemyHealth = 100;
   var playerOneTurn = true;
+  var playerAlert = true;
+  var enemyAlert = true;
   var moveSetOne;
   var enemyMoveSet;
 
@@ -23,23 +25,28 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('playerMoveSelect', function(move) {
     var variedDamage; //damage value that will be slightly different each time
-    if(move.damage !== 0) {
-    variedDamage = move.damage + getDamageVariance(); //add variety to damage values
-    variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
+    //if damage isn't an effect move and an effect move wasn't just played, you can hit opponent
+      if(move.damage !== 0) {
+        variedDamage = move.damage + getDamageVariance(); //add variety to damage values
+        variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
     //ensure variedDamage is not a negative number, will set equal to at least 0
-    if (variedDamage < 0) {
-      variedDamage = 1; //changed from zero so that if damage is randomly 0, I can tell them apart
-    }
-  } else {
-    variedDamage = 0;
-  }
-    if (playerOneTurn) {
-      //if playerOneTurn is true AND damage is above zero, do this.
+        if (variedDamage < 0) {
+          variedDamage = 1; //changed from zero so that if damage is randomly 0, I can tell them apart
+        }
+      } else {
+        if(enemyAlert) {
+          variedDamage = 0;
+        } else {
+          warnPlayer(); //if enemy is under an effect, warn player that they must choose a damage move
+        }
+      }
+    if (playerOneTurn === true && variedDamage !== undefined) {
+      //if playerOneTurn is true AND your selection is a damaging move if pokemon is asleep, or paralyzed.
       if(variedDamage > 0) {
       changeEnemyHealth(variedDamage); //updates health bar
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
-
+      enemyAlert = true; //if you chose a damage move while opponent was asleep, they are now awake.
       playerOneTurn = false;
       if(enemyHealth > 0) {
         enemyTurn();
@@ -57,21 +64,34 @@ window.GameApp = window.GameApp || {};
   GameApp.vent.on('enemyMoveSelect', function(move) {
     setTimeout(function() {
       var variedDamage; //damage value that will be slightly different each time
-      variedDamage= move.damage + getDamageVariance(); //add variety to damage values
-
+      if(move.damage !== 0) {
+        variedDamage= move.damage + getDamageVariance(); //add variety to damage values
       //ensure variedDamage is not a negative number, will set equal to at least 0
-      if (variedDamage < 0) {
-        variedDamage = 0;
-      }
-
-      changePlayerHealth(variedDamage); //updates health bar
-      $('.actiontext').css('color', 'red'); //Change text color to red for enemy
-      displayGameText(enemyCharacter, playerOneCharacter, move, variedDamage);
-
-      if (playerHealth > 0) {
-        playerOneTurn = true;
+        if (variedDamage < 0) {
+          variedDamage = 1;
+        }
       } else {
-        GameApp.router.navigate('lose', {trigger: true});
+        if(playerAlert) {
+          variedDamage = 0;
+        } else {
+          enemyTurn();
+        }
+      }
+      if(variedDamage !== undefined) {
+        if(variedDamage > 0) {
+          changePlayerHealth(variedDamage); //updates health bar
+          $('.actiontext').css('color', 'red'); //Change text color to red for enemy
+          displayGameText(enemyCharacter, playerOneCharacter, move, variedDamage);
+          playerAlert = true;
+          if (playerHealth > 0) {
+            playerOneTurn = true;
+          } else {
+            GameApp.router.navigate('lose', {trigger: true});
+          }
+        } else {
+          $('.actiontext').css('color', 'black');
+          determineEffectMove(move);
+        }
       }
     }, 3000);
   });
@@ -189,10 +209,27 @@ window.GameApp = window.GameApp || {};
   }
 
   function playerHeal(move) {
-    var healedAmount = (move.damage * 0.7);
+    var healedAmount = (playerHealth * 0.15);
     var newHealth = playerHealth + healedAmount;
+    if(newHealth > 100) {
+      newHealth = 100;
+      return newHealth;
+    }
     displayPlayerHealth(newHealth);
     playerHealth = newHealth;
+    enemyTurn();
+  }
+
+  function enemyHeal(move) {
+    var healedAmount = (enemyHealth * 0.15);
+    var newHealth = enemyHealth + healedAmount;
+    if(newHealth > 100) {
+      newHealth = 100;
+      return newHealth;
+    }
+    displayEnemyHealth(newHealth);
+    enemyHealth = newHealth;
+    playerOneTurn = true;
   }
 
   function changePlayerHealth(damage) {
@@ -217,13 +254,29 @@ window.GameApp = window.GameApp || {};
     var healEffects = ["Photosynthesis", "Fade", "Rest"];
     if(sleepEffects.indexOf(move.name) !== -1) {
       displaySleepText(playerOneCharacter, enemyCharacter, move);
+      if(playerOneTurn) {
+        enemyAlert = false;
+      } else {
+        playerAlert = false;
+        enemyTurn();
+      }
     }
     if(paralyzeEffects.indexOf(move.name) !== -1) {
       displayParalyzeText(playerOneCharacter, enemyCharacter, move);
+      if(playerOneTurn) {
+        enemyAlert = false;
+      } else {
+        playerAlert = false;
+        enemyTurn();
+      }
     }
     if(healEffects.indexOf(move.name) !== -1) {
       displayHealText(playerOneCharacter, enemyCharacter, move);
-      playerHeal(move);
+      if(playerOneTurn) {
+        playerHeal(move);
+      } else {
+        enemyHeal(move);
+      }
     }
   }
 
@@ -250,6 +303,11 @@ window.GameApp = window.GameApp || {};
   function displayHealText(pokemon, opponent, move) {
     $('.actiontext').html("");
     $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to heal themselves!" + "</p>");
+  }
+
+  function warnPlayer() {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + "Your opponent is already unable to fight! Choose another move!" + "</p>");
   }
 
   //returns random number between 0(exclusive) and 20(inclusive)

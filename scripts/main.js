@@ -188,6 +188,13 @@ window.GameApp = window.GameApp || {};
     $('.enemyhealthbar').css({"width": percentHealth});
   }
 
+  function playerHeal(move) {
+    var healedAmount = (move.damage * 0.7);
+    var newHealth = playerHealth + healedAmount;
+    displayPlayerHealth(newHealth);
+    playerHealth = newHealth;
+  }
+
   function changePlayerHealth(damage) {
     var newHealth = playerHealth - damage;
     displayPlayerHealth(newHealth);
@@ -209,7 +216,14 @@ window.GameApp = window.GameApp || {};
     var paralyzeEffects = ["Thunder Wave", "ThunderShock", "Scare", "Howl"];
     var healEffects = ["Photosynthesis", "Fade", "Rest"];
     if(sleepEffects.indexOf(move.name) !== -1) {
-      displaySleepText(playerOneCharacter, move)
+      displaySleepText(playerOneCharacter, enemyCharacter, move);
+    }
+    if(paralyzeEffects.indexOf(move.name) !== -1) {
+      displayParalyzeText(playerOneCharacter, enemyCharacter, move);
+    }
+    if(healEffects.indexOf(move.name) !== -1) {
+      displayHealText(playerOneCharacter, enemyCharacter, move);
+      playerHeal(move);
     }
   }
 
@@ -223,10 +237,19 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
   }
 
-  function displaySleepText(move) {
+  function displaySleepText(pokemon, opponent, move) {
     $('.actiontext').html("");
-    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to make " + opponent + " fall asleep for one turn!" + "</p>");
+  }
 
+  function displayParalyzeText(pokemon, opponent, move) {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to paralyze " + opponent + " making " + opponent + "unable to move for one turn!" + "</p>");
+  }
+
+  function displayHealText(pokemon, opponent, move) {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to heal themselves!" + "</p>");
   }
 
   //returns random number between 0(exclusive) and 20(inclusive)

@@ -115,31 +115,27 @@ window.GameApp = window.GameApp || {};
 
       $('.character-portrait').on('click', function(event) {
         playerOneCharacter = $(this).data('name');
-        console.log(playerOneCharacter);
-        // $('.player-one').replaceWith($(this).html());
-        $('.selection-stage').prepend(JST['stagedplayer']({
+        $('.selection-stage-player').append(JST['stagedplayer']({
           name : $(this).data('name'),
           imgURL : $('.character-portrait-image', this).attr('src')
         }));
-        $('.selection-stage-divider').css('display', 'inline-block');
-
-        console.log("Player One has chosen" + " " + playerOneCharacter);
+        $('.player-selection-status').text('Pokemon selected!');
+        $('.player-selection-status').removeClass('pulse');
+        $('.enemy-selection-status').css('display', 'block');
 
         $('.character-portrait').off('click');
 
         $('.character-portrait').on('click', function(event) {
-          if (playerOneCharacter !== undefined){
+          if (playerOneCharacter !== undefined) {
             enemyCharacter = $(this).data('name');
-            // $('.player-two').replaceWith($(this).html());
-            $('.selection-stage').append(JST['stagedplayer']({
-              name : $(this).data('name'),
-              imgURL : $('.character-portrait-image', this).attr('src')
+            $('.selection-stage-enemy').append(JST['stagedplayer']({
+                name : $(this).data('name'),
+                imgURL : $('.character-portrait-image', this).attr('src')
             }));
+            $('.enemy-selection-status').text('Opponent selected!');
+            $('.enemy-selection-status').removeClass('pulse');
+            $('.selection-waiting-alert').css('display', 'none');
             $('.start-game-button').css('display', 'block');
-            $('.character-portrait').off('click');
-
-
-            console.log("Player Two has chosen" + " " + enemyCharacter);
           }
         });
       });

@@ -10,6 +10,9 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $very-light-gray: #fafafa;
+$pokemon-yellow: #ffca43;
+$pokemon-blue: #2d68a8;
+$pokemon-red: #dd423e;
 
 $base-font-color: $dark-gray;
 $base-background-color: $very-light-gray;
@@ -27,13 +30,25 @@ body {
 
 // Title Screen Styles
 
+.title-image {
+  margin: 0 auto;
+  display: block;
+}
+
 
 .start-button {
+  position: absolute;
+  top: 429px;
+  left: 933px;
+  display: block;
   width: 200px;
   height: 100px;
-  margin-left: 400px;
-  font-size: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
   font-weight: bold;
+  color: $pokemon-red;
+  background-color: $pokemon-yellow;
 }
 
 
@@ -43,15 +58,20 @@ body {
 .character-grid-container {
   width: 800px;
   height: auto;
-  margin-left: 100px;
+  margin: 10px auto;
 }
 
 .character-portrait {
   display: inline-block;
   width: 100px;
   height: 100px;
-  margin: 10px;
-  border: 4px solid $blue;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 4px solid $pokemon-red;
+  border-radius: 20%;
+  background: #1a82f7;
 }
 
 .character-portrait img {
@@ -64,8 +84,7 @@ li {
   list-style: none;
 }
 
-.player-one,
-.player-two {
+.player-on-stage {
   width: 150px;
   height: 150px;
   display: inline-block;
@@ -73,9 +92,36 @@ li {
 }
 
 .selection-stage {
+  width: 800px;
   margin-top: 20px;
-  margin-left: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: -webkit-radial-gradient(circle, #1a82f7, #fff);
+  }
+
+.selection-stage-divider {
+  display: none;
 }
+
+.selection-stage-divider h3 {
+  font-family: impact;
+  font-size: 30px;
+  font-style: italic;
+  color: $pokemon-yellow;
+}
+
+.selection-stage img {
+  width: 96px;
+  height: 96px;
+}
+
+.start-game-button {
+  display: none;
+  width: 100%;
+}
+
+
 
  // Arena Styles
 .arenacontent {

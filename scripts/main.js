@@ -15,8 +15,10 @@ window.GameApp = window.GameApp || {};
   // Create an event hub
   GameApp.vent = _.extend({}, Backbone.Events);
 
-  GameApp.vent.on('list:display', function(event) { //this will need changing
-    $('.application').append(JST['character-select']()); // this will need changing
+  GameApp.vent.on('list:display', function(event) {
+    $('.application').append(JST['character-select']());
+    //animate scrolldown effect
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
   });
 
   GameApp.vent.on('playerMoveSelect', function(move) {
@@ -64,10 +66,6 @@ window.GameApp = window.GameApp || {};
     }, 3000);
   });
 
-  GameApp.vent.on('playerTurn: complete', function() {
-    enemyMove();
-  });
-
   $(document).ready(function(){
     GameApp.router = new GameApp.GameRouter();
     Backbone.history.start();
@@ -83,11 +81,17 @@ window.GameApp = window.GameApp || {};
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
-        });
+      });
 
-      $('.character-portrait').on('click', function(){
-        playerOneCharacter=($(this).text());
-        $('.player-one').replaceWith($(this).html());
+      $('.character-portrait').on('click', function(event){
+        playerOneCharacter = $(this).data('name');
+        console.log(playerOneCharacter);
+        // $('.player-one').replaceWith($(this).html());
+        $('.selection-stage').prepend(JST['stagedplayer']({
+          name : $(this).data('name'),
+          imgURL : $('.character-portrait-image', this).attr('src')
+        }));
+        $('.selection-stage-divider').css('display', 'inline-block');
 
         console.log("Player One has chosen" + " " + playerOneCharacter);
 
@@ -95,9 +99,15 @@ window.GameApp = window.GameApp || {};
 
         $('.character-portrait').on('click', function(){
           if (playerOneCharacter !== undefined){
-          enemyCharacter=($(this).text());
-          $('.player-two').replaceWith($(this).html());
-          console.log("Player Two has chosen" + " " + enemyCharacter);
+            enemyCharacter = $(this).data('name');
+            // $('.player-two').replaceWith($(this).html());
+            $('.selection-stage').append(JST['stagedplayer']({
+              name : $(this).data('name'),
+              imgURL : $('.character-portrait-image', this).attr('src')
+            }));
+            $('.start-game-button').css('display', 'block');
+
+            console.log("Player Two has chosen" + " " + enemyCharacter);
           }
         });
       });
@@ -117,7 +127,7 @@ window.GameApp = window.GameApp || {};
       var selectedPokemonTwo = _.filter(pokemonlist, function(pokemon){
         return pokemon.name === enemyCharacter;
       });
-
+      console.log(selectedPokemonOne);
       moveSetOne = selectedPokemonOne[0].moves;
       enemyMoveSet = selectedPokemonTwo[0].moves;
       displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);

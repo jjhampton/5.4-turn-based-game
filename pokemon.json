@@ -700,7 +700,7 @@
     "image": {
       "front": "pokemon-gifs/yveltal-front.gif",
       "back": "pokemon-gifs/yveltal-back.gif",
-      "profile": "pokemon-gifs/yveltal-prof.png"
+      "profile": "pokemon-gifs/yveltal-prof.gif"
     },
     "moves": [{
       "name": "Psychic",

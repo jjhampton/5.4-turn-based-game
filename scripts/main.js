@@ -64,10 +64,6 @@ window.GameApp = window.GameApp || {};
     }, 3000);
   });
 
-  GameApp.vent.on('playerTurn: complete', function() {
-    enemyMove();
-  });
-
   $(document).ready(function(){
     GameApp.router = new GameApp.GameRouter();
     Backbone.history.start();

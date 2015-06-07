@@ -27,11 +27,18 @@ body {
 
 // Title Screen Styles
 
+.title-image {
+  margin: 0 auto;
+  display: block;
+}
+
 
 .start-button {
+  display: block;
   width: 200px;
   height: 100px;
-  margin-left: 400px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 3em;
   font-weight: bold;
 }
@@ -43,7 +50,7 @@ body {
 .character-grid-container {
   width: 800px;
   height: auto;
-  margin-left: 100px;
+  margin: 0 auto;
 }
 
 .character-portrait {
@@ -74,7 +81,9 @@ li {
 
 .selection-stage {
   margin-top: 20px;
-  margin-left: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
 }
 
  // Arena Styles

@@ -90,6 +90,8 @@ window.GameApp = window.GameApp || {};
           imgURL : $('.character-portrait-image', this).attr('src')
         }));
         $('.player-selection-status').text('Pokemon selected!');
+        $('.player-selection-status').removeClass('pulse');
+        $('.enemy-selection-status').css('display', 'block');
 
         $('.character-portrait').off('click');
 
@@ -101,6 +103,7 @@ window.GameApp = window.GameApp || {};
                 imgURL : $('.character-portrait-image', this).attr('src')
             }));
             $('.enemy-selection-status').text('Opponent selected!');
+            $('.enemy-selection-status').removeClass('pulse');
             $('.selection-waiting-alert').css('display', 'none');
             $('.start-game-button').css('display', 'block');
           }

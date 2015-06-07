@@ -209,7 +209,7 @@ window.GameApp = window.GameApp || {};
     var paralyzeEffects = ["Thunder Wave", "ThunderShock", "Scare", "Howl"];
     var healEffects = ["Photosynthesis", "Fade", "Rest"];
     if(sleepEffects.indexOf(move.name) !== -1) {
-      displaySleepText(move)
+      displaySleepText(playerOneCharacter, move)
     }
   }
 
@@ -223,7 +223,11 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
   }
 
-  function displaySleepText(move)
+  function displaySleepText(move) {
+    $('.actiontext').html("");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " on " + opponent + " for " + damage + " damage!" + "</p>");
+
+  }
 
   //returns random number between 0(exclusive) and 20(inclusive)
   function getDamageVariance() {

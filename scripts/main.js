@@ -83,7 +83,7 @@ window.GameApp = window.GameApp || {};
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
       });
 
-      $('.character-portrait').on('click', function(event){
+      $(document).on('click', '.character-portrait', function(event){
         playerOneCharacter = $(this).data('name');
         console.log(playerOneCharacter);
         // $('.player-one').replaceWith($(this).html());
@@ -95,9 +95,9 @@ window.GameApp = window.GameApp || {};
 
         console.log("Player One has chosen" + " " + playerOneCharacter);
 
-        $('.character-portrait').off('click');
+        $(document).off('click', 'character-portrait');
 
-        $('.character-portrait').on('click', function(){
+        $(document).on('click', '.character-portrait', function(){
           if (playerOneCharacter !== undefined){
             enemyCharacter = $(this).data('name');
             // $('.player-two').replaceWith($(this).html());
@@ -141,16 +141,16 @@ window.GameApp = window.GameApp || {};
 
   function displayBattleMenu(moveset) {
     $('.battlemenu').html(JST['battlemenu'](moveset));
-    $('.firstmove').on('click', function(event) {
+    $(document).on('click', '.firstmove', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[0]);
     });
-    $('.secondmove').on('click', function(event) {
+    $(document).on('click', '.secondmove', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[1]);
     });
-    $('.thirdmove').on('click', function(event) {
+    $(document).on('click', '.thirdmove', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[2]);
     });
-    $('.fourthmove').on('click', function(event) {
+    $(document).on('click', '.fourthmove', function(event) {
       GameApp.vent.trigger('playerMoveSelect', moveset[3]);
     });
   }

@@ -69,7 +69,7 @@ window.GameApp = window.GameApp || {};
   $(document).ready(function(){
     GameApp.router = new GameApp.GameRouter();
     Backbone.history.start();
-    GameApp.router.navigate('index', {trigger: true});
+    GameApp.router.navigate('', {trigger: true});
   });
 
   // Set Event listener on character-selected-event: for whatever event is fired after both characters are selected on the 'CHARACTER SELECT GRID', a "BEGIN GAME BUTTON" or similar is pressed,  and we want to route to the game screen
@@ -133,6 +133,10 @@ window.GameApp = window.GameApp || {};
       displayPlayerPokemon(selectedPokemonOne[0], moveSetOne);
       displayEnemyPokemon(selectedPokemonTwo[0]);
     });
+  });
+
+  $(document).on('click', '.playagain', function(event) {
+    GameApp.router.navigate('', {trigger: true});
   });
 
   function displayBattleMenu(moveset) {

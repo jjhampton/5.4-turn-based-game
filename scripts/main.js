@@ -204,5 +204,5 @@ window.GameApp = window.GameApp || {};
     console.log(Math.floor(randomNumber * plusOrMinus));
     return Math.floor(randomNumber * plusOrMinus);
   }
-  
+
 })();

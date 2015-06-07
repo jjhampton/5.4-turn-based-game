@@ -33,4 +33,4 @@ window.GameApp = window.GameApp || {};
 
   GameApp.router = new GameApp.GameRouter();
 
-})()
+})();

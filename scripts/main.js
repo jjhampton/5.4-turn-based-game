@@ -106,6 +106,8 @@ window.GameApp = window.GameApp || {};
               imgURL : $('.character-portrait-image', this).attr('src')
             }));
             $('.start-game-button').css('display', 'block');
+            $('.character-portrait').off('click');
+
 
             console.log("Player Two has chosen" + " " + enemyCharacter);
           }

@@ -16,7 +16,7 @@ window.GameApp = window.GameApp || {};
       $('.application').html(JST['title-screen']());
       //lower volume of title screen music - default is too loud
       var titlescreenmusic = document.querySelector('.title-screen-audio');
-      titlescreenmusic.volume = 0.4;
+      titlescreenmusic.volume = 0.2;
     },
 
     game: function() {

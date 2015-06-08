@@ -105,7 +105,9 @@ window.GameApp = window.GameApp || {};
             GameApp.vent.trigger('playerMovePrompt');
           } else {
             GameApp.vent.trigger('pokemonDead');
-            GameApp.router.navigate('lose', {trigger: true});
+            setTimeout(function(){
+              GameApp.router.navigate('lose', {trigger: true});
+            }, 5000);
           }
         } else {
           $('.actiontext').css('color', 'red');

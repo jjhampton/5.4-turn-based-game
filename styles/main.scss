@@ -179,6 +179,16 @@ li {
   height: auto;
 }
 
+.playergif {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+.playergifdead {
+  opacity: 0;
+}
+
 .playerpokemoninfo {
   @include span-columns(2.5);
   height: 60px;
@@ -272,6 +282,16 @@ li {
   margin-left: 450px;
 }
 
+.enemygif {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+.enemygifdead {
+  opacity: 0;
+}
+
 .playerdeadpokemon {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -297,6 +317,13 @@ li {
   margin-top: 10px;
   border-radius: 3px;
   background-color: white;
+}
+
+.gameTextString {
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 2em;
+
 }
 
 .actionoptions {

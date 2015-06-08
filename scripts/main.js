@@ -17,7 +17,7 @@ window.GameApp = window.GameApp || {};
   var damageSound = new Audio('assets/audio/damage.mp3');
   var startSound = new Audio('assets/audio/coin.mp3');
   var selectSound = new Audio('assets/audio/select.mp3');
-  var battleStartSound = new Audio('assets/audio/hadouken.mp3');
+  var battleStartSound = new Audio('assets/audio/fight.wav');
   var deathSound = new Audio('assets/audio/howarddeanscream.mp3');
 
 

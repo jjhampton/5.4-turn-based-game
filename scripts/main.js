@@ -27,13 +27,23 @@ window.GameApp = window.GameApp || {};
     displayPlayerMovePrompt();
   });
 
+  GameApp.vent.on('pokemonDead', function() {
+    if (playerOneTurn) {
+      $('.enemybox').addClass('enemydeadpokemon');
+    }
+    else {
+      $('.playerbox').addClass('playerdeadpokemon');
+    }
+    $.playSound('assets/audio/howarddeanscream');
+  });
+
   GameApp.vent.on('playerMoveSelect', function(move) {
     var variedDamage; //damage value that will be slightly different each time
     //if damage isn't an effect move and an effect move wasn't just played, you can hit opponent
       if(move.damage !== 0) {
         variedDamage = move.damage + getDamageVariance(); //add variety to damage values
         variedDamage = Math.floor(variedDamage * 0.7); // smaller damage values to prolong game
-    //ensure variedDamage is not a negative number, will set equal to at least 0
+        //ensure variedDamage is not a negative number, will set equal to at least 1
         if (variedDamage < 0) {
           variedDamage = 1; //changed from zero so that if damage is randomly 0, I can tell them apart
         }
@@ -51,16 +61,19 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
       enemyAlert = true; //if you chose a damage move while opponent was asleep, they are now awake.
-      playerOneTurn = false;
       if(enemyHealth > 0) {
+        playerOneTurn = false;
         enemyTurn();
       } else {
-        GameApp.router.navigate('win', {trigger: true});
+        GameApp.vent.trigger('pokemonDead');
+        setTimeout(function(){
+          GameApp.router.navigate('win', {trigger: true});
+          }, 5000);
         }
       } else {
         //if playerOneTurn is true AND damage is not above zero, do this
       $('.actiontext').css('color', 'black');
-      determineEffectMove(move);
+      determineEffectMove(move, playerOneCharacter, enemyCharacter);
       }
     } //end of if(playerturn)
   }); //end of click event
@@ -89,16 +102,17 @@ window.GameApp = window.GameApp || {};
           playerAlert = true;
           if (playerHealth > 0) {
             playerOneTurn = true;
+            GameApp.vent.trigger('playerMovePrompt');
           } else {
+            GameApp.vent.trigger('pokemonDead');
             GameApp.router.navigate('lose', {trigger: true});
           }
         } else {
-          $('.actiontext').css('color', 'black');
-          determineEffectMove(move);
+          $('.actiontext').css('color', 'red');
+          determineEffectMove(move, enemyCharacter, playerOneCharacter);
         }
       }
-      GameApp.vent.trigger('playerMovePrompt');
-    }, 3000);
+    }, 2000);
   });
 
   $(document).ready(function(){
@@ -213,7 +227,7 @@ window.GameApp = window.GameApp || {};
     $('.enemyhealthbar').css({"width": percentHealth});
   }
 
-  function playerHeal(move) {
+  function playerHeal() {
     var healedAmount = (playerHealth * 0.15);
     var newHealth = playerHealth + healedAmount;
     if(newHealth > 100) {
@@ -225,7 +239,7 @@ window.GameApp = window.GameApp || {};
     enemyTurn();
   }
 
-  function enemyHeal(move) {
+  function enemyHeal() {
     var healedAmount = (enemyHealth * 0.15);
     var newHealth = enemyHealth + healedAmount;
     if(newHealth > 100) {
@@ -235,6 +249,7 @@ window.GameApp = window.GameApp || {};
     displayEnemyHealth(newHealth);
     enemyHealth = newHealth;
     playerOneTurn = true;
+    GameApp.vent.trigger('playerMovePrompt');
   }
 
   function changePlayerHealth(damage) {
@@ -253,12 +268,12 @@ window.GameApp = window.GameApp || {};
     GameApp.vent.trigger('enemyMoveSelect', enemyMove);
   }
 
-  function determineEffectMove(move) {
+  function determineEffectMove(move, pokemon, opponent) {
     var sleepEffects = ["Sleep Powder", "Hypnosis", "Sing", "Hypnotize"];
     var paralyzeEffects = ["Thunder Wave", "ThunderShock", "Scare", "Howl"];
     var healEffects = ["Photosynthesis", "Fade", "Rest"];
     if(sleepEffects.indexOf(move.name) !== -1) {
-      displaySleepText(playerOneCharacter, enemyCharacter, move);
+      displaySleepText(pokemon, opponent, move);
       if(playerOneTurn) {
         enemyAlert = false;
       } else {
@@ -267,7 +282,7 @@ window.GameApp = window.GameApp || {};
       }
     }
     if(paralyzeEffects.indexOf(move.name) !== -1) {
-      displayParalyzeText(playerOneCharacter, enemyCharacter, move);
+      displayParalyzeText(pokemon, opponent, move);
       if(playerOneTurn) {
         enemyAlert = false;
       } else {
@@ -276,11 +291,11 @@ window.GameApp = window.GameApp || {};
       }
     }
     if(healEffects.indexOf(move.name) !== -1) {
-      displayHealText(playerOneCharacter, enemyCharacter, move);
+      displayHealText(pokemon, opponent, move);
       if(playerOneTurn) {
-        playerHeal(move);
+        playerHeal();
       } else {
-        enemyHeal(move);
+        enemyHeal();
       }
     }
   }
@@ -295,7 +310,7 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').html("");
       $('.actiontext').css('color', 'black');
       $('.actiontext').html("<p class='gameTextString' + >" + "Choose your move!" + "</p>");
-    }, 3000);
+    }, 2000);
   }
 
   function displayGameText(pokemon, opponent, move, damage) {
@@ -310,7 +325,7 @@ window.GameApp = window.GameApp || {};
 
   function displayParalyzeText(pokemon, opponent, move) {
     $('.actiontext').html("");
-    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to paralyze " + opponent + " making " + opponent + "unable to move for one turn!" + "</p>");
+    $('.actiontext').html("<p class='gameTextString' + >" + pokemon + " uses " + move.name + " to paralyze " + opponent + " making " + opponent + " unable to move for one turn!" + "</p>");
   }
 
   function displayHealText(pokemon, opponent, move) {

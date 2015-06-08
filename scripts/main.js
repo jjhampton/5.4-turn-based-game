@@ -89,16 +89,16 @@ window.GameApp = window.GameApp || {};
           playerAlert = true;
           if (playerHealth > 0) {
             playerOneTurn = true;
+            GameApp.vent.trigger('playerMovePrompt');
           } else {
             GameApp.router.navigate('lose', {trigger: true});
           }
         } else {
-          $('.actiontext').css('color', 'black');
+          $('.actiontext').css('color', 'red');
           determineEffectMove(move, enemyCharacter, playerOneCharacter);
         }
       }
-      GameApp.vent.trigger('playerMovePrompt');
-    }, 3000);
+    }, 2000);
   });
 
   $(document).ready(function(){
@@ -213,7 +213,7 @@ window.GameApp = window.GameApp || {};
     $('.enemyhealthbar').css({"width": percentHealth});
   }
 
-  function playerHeal(move) {
+  function playerHeal() {
     var healedAmount = (playerHealth * 0.15);
     var newHealth = playerHealth + healedAmount;
     if(newHealth > 100) {
@@ -225,7 +225,7 @@ window.GameApp = window.GameApp || {};
     enemyTurn();
   }
 
-  function enemyHeal(move) {
+  function enemyHeal() {
     var healedAmount = (enemyHealth * 0.15);
     var newHealth = enemyHealth + healedAmount;
     if(newHealth > 100) {
@@ -235,6 +235,7 @@ window.GameApp = window.GameApp || {};
     displayEnemyHealth(newHealth);
     enemyHealth = newHealth;
     playerOneTurn = true;
+    GameApp.vent.trigger('playerMovePrompt');
   }
 
   function changePlayerHealth(damage) {
@@ -278,9 +279,9 @@ window.GameApp = window.GameApp || {};
     if(healEffects.indexOf(move.name) !== -1) {
       displayHealText(pokemon, opponent, move);
       if(playerOneTurn) {
-        playerHeal(move);
+        playerHeal();
       } else {
-        enemyHeal(move);
+        enemyHeal();
       }
     }
   }
@@ -295,7 +296,7 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').html("");
       $('.actiontext').css('color', 'black');
       $('.actiontext').html("<p class='gameTextString' + >" + "Choose your move!" + "</p>");
-    }, 3000);
+    }, 2000);
   }
 
   function displayGameText(pokemon, opponent, move, damage) {

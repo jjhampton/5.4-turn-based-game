@@ -179,6 +179,16 @@ li {
   height: auto;
 }
 
+.playergif {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+.playergifdead {
+  opacity: 0;
+}
+
 .playerpokemoninfo {
   @include span-columns(2.5);
   height: 60px;
@@ -270,6 +280,16 @@ li {
   position: absolute;
   margin-top: 100px;
   margin-left: 450px;
+}
+
+.enemygif {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+.enemygifdead {
+  opacity: 0;
 }
 
 .playerdeadpokemon {

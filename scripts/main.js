@@ -29,12 +29,14 @@ window.GameApp = window.GameApp || {};
 
   GameApp.vent.on('pokemonDead', function() {
     if (playerOneTurn) {
+      $('.enemygif').addClass('enemygifdead');
       $('.enemybox').addClass('enemydeadpokemon');
       $('.actiontext').html("");
       $('.actiontext').css('color', 'black');
       $('.actiontext').html("<p class='gameTextString' + >" + enemyCharacter + " has been defeated!" + "</p>");
     }
     else {
+      $('.playergif').addClass('playergifdead');
       $('.playerbox').addClass('playerdeadpokemon');
       $('.actiontext').html("");
       $('.actiontext').css('color', 'black');

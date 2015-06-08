@@ -13,6 +13,13 @@ window.GameApp = window.GameApp || {};
   var moveSetOne;
   var enemyMoveSet;
 
+  //load sound effects
+  var damageSound = new Audio('assets/audio/damage.mp3');
+  var startSound = new Audio('assets/audio/coin.mp3');
+  var selectSound = new Audio('assets/audio/select.mp3');
+  var battleStartSound = new Audio('assets/audio/fight.wav');
+  var deathSound = new Audio('assets/audio/howarddeanscream.mp3');
+
 
   // Create an event hub
   GameApp.vent = _.extend({}, Backbone.Events);
@@ -26,6 +33,20 @@ window.GameApp = window.GameApp || {};
   GameApp.vent.on('playerMovePrompt', function() {
     displayPlayerMovePrompt();
   });
+
+  // All of the below are sound effects, wanted to test out using GampeApp.vent
+  // GameApp.vent.on('damageDone', function() {
+  //   $.playSound('assets/audio/damage');
+  // });
+  // GameApp.vent.on('startPressed', function() {
+  //   $.playSound('assets/audio/coin');
+  // });
+  // GameApp.vent.on('charSelected', function() {
+  //   $.playSound('assets/audio/select');
+  // });
+  // GameApp.vent.on('finalStartPressed', function() {
+  //   $.playSound('assets/audio/hadouken');
+  // });
 
   GameApp.vent.on('pokemonDead', function() {
     if (playerOneTurn) {
@@ -42,7 +63,7 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').css('color', 'black');
       $('.actiontext').html("<p class='gameTextString' + >" + playerOneCharacter + " has been defeated!" + "</p>");
     }
-    $.playSound('assets/audio/howarddeanscream');
+    deathSound.play();
   });
 
   GameApp.vent.on('playerMoveSelect', function(move) {
@@ -66,6 +87,7 @@ window.GameApp = window.GameApp || {};
       //if playerOneTurn is true AND your selection is a damaging move if pokemon is asleep, or paralyzed.
       if(variedDamage > 0) {
       changeEnemyHealth(variedDamage); //updates health bar
+      damageSound.play();
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
       enemyAlert = true; //if you chose a damage move while opponent was asleep, they are now awake.
@@ -105,6 +127,7 @@ window.GameApp = window.GameApp || {};
       if(variedDamage !== undefined) {
         if(variedDamage > 0) {
           changePlayerHealth(variedDamage); //updates health bar
+          damageSound.play();
           $('.actiontext').css('color', 'red'); //Change text color to red for enemy
           displayGameText(enemyCharacter, playerOneCharacter, move, variedDamage);
           playerAlert = true;
@@ -134,6 +157,7 @@ window.GameApp = window.GameApp || {};
   // Set Event listener on character-selected-event: for whatever event is fired after both characters are selected on the 'CHARACTER SELECT GRID', a "BEGIN GAME BUTTON" or similar is pressed,  and we want to route to the game screen
   $(document).on('click', '.start-button', function(event){
     event.preventDefault();
+    startSound.play();
     GameApp.vent.trigger('list:display');
     $.ajax({
       url: '../pokemon.json'
@@ -143,6 +167,7 @@ window.GameApp = window.GameApp || {};
       });
 
       $('.character-portrait').on('click', function(event) {
+        selectSound.play();
         playerOneCharacter = $(this).data('name');
         $('.selection-stage-player').append(JST['stagedplayer']({
           name : $(this).data('name'),
@@ -156,6 +181,7 @@ window.GameApp = window.GameApp || {};
 
         $('.character-portrait').on('click', function(event) {
           if (playerOneCharacter !== undefined) {
+            selectSound.play();
             enemyCharacter = $(this).data('name');
             $('.selection-stage-enemy').append(JST['stagedplayer']({
                 name : $(this).data('name'),
@@ -174,6 +200,7 @@ window.GameApp = window.GameApp || {};
 
   $(document).on('click', '.start-game-button', function(event){
     event.preventDefault();
+    battleStartSound.play();
     GameApp.router.navigate('game', {trigger: true});
     $.ajax({
       url: '../pokemon.json'

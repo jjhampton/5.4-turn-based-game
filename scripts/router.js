@@ -14,12 +14,16 @@ window.GameApp = window.GameApp || {};
 
     index: function(){
       $('.application').html(JST['title-screen']());
-      // will use $('.application').append(JST['character-select']()) to append character-select-grid with scroll-down effect
+      //lower volume of title screen music - default is too loud
+      var titlescreenmusic = document.querySelector('.title-screen-audio');
+      titlescreenmusic.volume = 0.2;
     },
 
     game: function() {
       $('.application').html(JST['renderarena']());
-
+      //lower volume of battle screen music - default is too loud
+      var battlemusic = document.querySelector('.battle-theme-audio');
+      battlemusic.volume = 0.4;
     },
 
     win: function() {

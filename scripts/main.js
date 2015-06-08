@@ -27,6 +27,16 @@ window.GameApp = window.GameApp || {};
     displayPlayerMovePrompt();
   });
 
+  GameApp.vent.on('pokemonDead', function() {
+    if (playerOneTurn) {
+      $('.enemybox').addClass('enemydeadpokemon');
+    }
+    else {
+      $('.playerbox').addClass('playerdeadpokemon');
+    }
+    $.playSound('assets/audio/howarddeanscream');
+  });
+
   GameApp.vent.on('playerMoveSelect', function(move) {
     var variedDamage; //damage value that will be slightly different each time
     //if damage isn't an effect move and an effect move wasn't just played, you can hit opponent
@@ -51,11 +61,14 @@ window.GameApp = window.GameApp || {};
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
       enemyAlert = true; //if you chose a damage move while opponent was asleep, they are now awake.
-      playerOneTurn = false;
       if(enemyHealth > 0) {
+        playerOneTurn = false;
         enemyTurn();
       } else {
-        GameApp.router.navigate('win', {trigger: true});
+        GameApp.vent.trigger('pokemonDead');
+        setTimeout(function(){
+          GameApp.router.navigate('win', {trigger: true});
+          }, 5000);
         }
       } else {
         //if playerOneTurn is true AND damage is not above zero, do this
@@ -91,6 +104,7 @@ window.GameApp = window.GameApp || {};
             playerOneTurn = true;
             GameApp.vent.trigger('playerMovePrompt');
           } else {
+            GameApp.vent.trigger('pokemonDead');
             GameApp.router.navigate('lose', {trigger: true});
           }
         } else {

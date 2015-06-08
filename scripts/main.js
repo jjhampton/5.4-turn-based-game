@@ -275,6 +275,7 @@ window.GameApp = window.GameApp || {};
     if(sleepEffects.indexOf(move.name) !== -1) {
       displaySleepText(pokemon, opponent, move);
       if(playerOneTurn) {
+        GameApp.vent.trigger('playerMovePrompt');
         enemyAlert = false;
       } else {
         playerAlert = false;
@@ -284,6 +285,7 @@ window.GameApp = window.GameApp || {};
     if(paralyzeEffects.indexOf(move.name) !== -1) {
       displayParalyzeText(pokemon, opponent, move);
       if(playerOneTurn) {
+        GameApp.vent.trigger('playerMovePrompt');
         enemyAlert = false;
       } else {
         playerAlert = false;

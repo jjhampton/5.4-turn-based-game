@@ -30,9 +30,15 @@ window.GameApp = window.GameApp || {};
   GameApp.vent.on('pokemonDead', function() {
     if (playerOneTurn) {
       $('.enemybox').addClass('enemydeadpokemon');
+      $('.actiontext').html("");
+      $('.actiontext').css('color', 'black');
+      $('.actiontext').html("<p class='gameTextString' + >" + enemyCharacter + " has been defeated!" + "</p>");
     }
     else {
       $('.playerbox').addClass('playerdeadpokemon');
+      $('.actiontext').html("");
+      $('.actiontext').css('color', 'black');
+      $('.actiontext').html("<p class='gameTextString' + >" + playerOneCharacter + " has been defeated!" + "</p>");
     }
     $.playSound('assets/audio/howarddeanscream');
   });

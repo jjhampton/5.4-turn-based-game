@@ -299,6 +299,13 @@ li {
   background-color: white;
 }
 
+.gameTextString {
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 2em;
+
+}
+
 .actionoptions {
   @include span-columns(4.7 of 12);
   @include omega();

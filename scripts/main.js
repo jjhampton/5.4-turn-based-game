@@ -26,6 +26,10 @@ window.GameApp = window.GameApp || {};
   GameApp.vent.on('playerMovePrompt', function() {
     displayPlayerMovePrompt();
   });
+  
+  GameApp.vent.on('damageDone', function() {
+    $.playSound('assets/audio/damage');
+  });
 
   GameApp.vent.on('pokemonDead', function() {
     if (playerOneTurn) {
@@ -66,6 +70,7 @@ window.GameApp = window.GameApp || {};
       //if playerOneTurn is true AND your selection is a damaging move if pokemon is asleep, or paralyzed.
       if(variedDamage > 0) {
       changeEnemyHealth(variedDamage); //updates health bar
+      GameApp.vent.trigger('damageDone'); //tells GameApp.vent to play sound effect
       $('.actiontext').css('color', 'black'); //Change text color to black for player
       displayGameText(playerOneCharacter, enemyCharacter, move, variedDamage);
       enemyAlert = true; //if you chose a damage move while opponent was asleep, they are now awake.
@@ -105,6 +110,7 @@ window.GameApp = window.GameApp || {};
       if(variedDamage !== undefined) {
         if(variedDamage > 0) {
           changePlayerHealth(variedDamage); //updates health bar
+          GameApp.vent.trigger('damageDone'); // tells GameApp.vent to play sound effect
           $('.actiontext').css('color', 'red'); //Change text color to red for enemy
           displayGameText(enemyCharacter, playerOneCharacter, move, variedDamage);
           playerAlert = true;

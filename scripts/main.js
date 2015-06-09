@@ -160,7 +160,7 @@ window.GameApp = window.GameApp || {};
     startSound.play();
     GameApp.vent.trigger('list:display');
     $.ajax({
-      url: '../pokemon.json'
+      url: 'pokemon.json'
     }).then(function(pokemonlist) {
       pokemonlist.forEach(function(pokemon) {
         $('.character-grid-container').append(JST['rendercharacter'](pokemon));
@@ -203,7 +203,7 @@ window.GameApp = window.GameApp || {};
     battleStartSound.play();
     GameApp.router.navigate('game', {trigger: true});
     $.ajax({
-      url: '../pokemon.json'
+      url: 'pokemon.json'
     }).then(function(pokemonlist) {
       var selectedPokemonOne = _.filter(pokemonlist, function(pokemon){
                 return pokemon.name === playerOneCharacter;

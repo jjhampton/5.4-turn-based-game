@@ -31,7 +31,7 @@ this["JST"]["gamelose"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],
     return "<section class=\"losescreen\">\n  <h1 class=\"losetext\">You Lose</h1>\n  <img src=\"http://media.giphy.com/media/wzRfW1SV1DSec/giphy.gif\" class=\"loseimage\">\n  <div class=\"gameboy\"></div>\n</section>\n<button class=\"playagain\">Play Again!</button>\n<audio class=\"battle-theme-audio\" src=\"assets/audio/losing-song.mp3\" autoplay></audio>\n";
 },"useData":true});
 this["JST"]["gamewin"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<section class=\"winscreen\">\n  <h1 class=\"wintext\">You Win!</h1>\n  <img src=\"http://media.giphy.com/media/FSBSB5UDRomuQ/giphy.gif\" class=\"winimage\">\n  <img src=\"../../pokemon-gifs/trainer1.gif\" class=\"trainer\">\n  <img src=\"../../pokemon-gifs/pikachu.gif\" class=\"pikachu\">\n</section>\n<button class=\"playagain\">Play Again!</button>\n<audio class=\"battle-theme-audio\" src=\"assets/audio/winning-song.mp3\" autoplay loop></audio>\n";
+    return "<section class=\"winscreen\">\n  <h1 class=\"wintext\">You Win!</h1>\n  <img src=\"http://media.giphy.com/media/FSBSB5UDRomuQ/giphy.gif\" class=\"winimage\">\n  <img src=\"pokemon-gifs/trainer1.gif\" class=\"trainer\">\n  <img src=\"pokemon-gifs/pikachu.gif\" class=\"pikachu\">\n</section>\n<button class=\"playagain\">Play Again!</button>\n<audio class=\"battle-theme-audio\" src=\"assets/audio/winning-song.mp3\" autoplay loop></audio>\n";
 },"useData":true});
 this["JST"]["player"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=this.escapeExpression;

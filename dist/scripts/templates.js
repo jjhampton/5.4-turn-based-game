@@ -66,5 +66,5 @@ this["JST"]["stagedplayer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.
     + "\"\n</div>\n";
 },"useData":true});
 this["JST"]["title-screen"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"title-elements\">\n  <img src=\"../assets/title-screen.jpg\" alt=\"title image\" class=\"title-image\" />\n  <button class=\"start-button slideLeft\">Click to Play!</button>\n</div>\n<audio class=\"title-screen-audio\" src=\"assets/audio/pokemon-title-screen.mp3\" autoplay loop></audio>\n";
+    return "<div class=\"title-elements\">\n  <img src=\"assets/title-screen.jpg\" alt=\"title image\" class=\"title-image\" />\n  <button class=\"start-button slideLeft\">Click to Play!</button>\n</div>\n<audio class=\"title-screen-audio\" src=\"assets/audio/pokemon-title-screen.mp3\" autoplay loop></audio>\n";
 },"useData":true});
